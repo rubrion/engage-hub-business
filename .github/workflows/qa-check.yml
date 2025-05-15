@@ -1,0 +1,55 @@
+name: QACheck
+
+on: [pull_request]
+
+jobs:
+  qa-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.RUBRION_APP_ID }}
+          private-key: ${{ secrets.RUBRION_APP_SECRET }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Check Formatting
+        run: npm run format:check
+
+      - name: Run Unit Tests
+        run: npm test
+
+      - name: Generate Coverage Report
+        run: npm run test:coverage
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+
+      - name: Generate QA Summary
+        run: |
+          echo "### QACheck Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Linting**: Passed ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- **Formatting**: Passed ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- **Unit Tests**: Passed ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- **Coverage Report**: [Download here](./artifacts/coverage-report)" >> $GITHUB_STEP_SUMMARY

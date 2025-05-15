@@ -1,0 +1,123 @@
+name: Cleanup Inactive Deployments
+
+on:
+  delete:
+    branches:
+      - 'release/**'
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Extract Deleted Branch Information
+        id: extract
+        run: |
+          RAW_BRANCH="${{ github.event.ref }}"
+          echo "Deleted branch: $RAW_BRANCH"
+          BASE_VERSION=$(echo "$RAW_BRANCH" | sed 's/^release\///' | sed 's/-beta.*//')
+          DOMAIN_SLUG="release-$(echo "$BASE_VERSION" | tr '.' '-')"
+          CUSTOM_DOMAIN="$DOMAIN_SLUG.${{ vars.PROJECT_NAME }}.rubrion.com"
+          echo "deleted_branch=$RAW_BRANCH" >> $GITHUB_ENV
+          echo "custom_domain=$CUSTOM_DOMAIN" >> $GITHUB_ENV
+          echo "Extracted branch: $RAW_BRANCH"
+          echo "Computed custom domain: $CUSTOM_DOMAIN"
+
+      - name: Fetch Deployment List from Cloudflare
+        id: fetch-deployments
+        run: |
+          echo "Fetching deployments for project: ${{ vars.PROJECT_NAME }}"
+          RESPONSE=$(curl -s -X GET "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CF_ACCOUNT_ID }}/pages/projects/${{ vars.PROJECT_NAME }}/deployments" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -H "Content-Type: application/json")
+          if [[ -z "$RESPONSE" || "$RESPONSE" == "null" ]]; then
+            echo "No deployments found or API response is empty."
+            exit 0
+          fi
+          echo "$RESPONSE" | jq '.' > deployments.json
+          DEPLOYMENT_IDS=$(jq -r --arg BRANCH "${{ github.event.ref }}" '.result[]? | select(.deployment_trigger.metadata.branch==$BRANCH) | .id' deployments.json)
+          if [[ -z "$DEPLOYMENT_IDS" || "$DEPLOYMENT_IDS" == "null" ]]; then
+            echo "No Cloudflare deployments found for branch: ${{ github.event.ref }}"
+            exit 0
+          fi
+          echo "$DEPLOYMENT_IDS" > deployment_ids.txt
+
+      - name: Delete Cloudflare Deployments
+        run: |
+          if [[ ! -s deployment_ids.txt ]]; then
+            echo "No deployments to delete."
+            exit 0
+          fi
+          for ID in $(cat deployment_ids.txt); do
+            echo "Deleting Deployment ID: $ID"
+            curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CF_ACCOUNT_ID }}/pages/projects/${{ vars.PROJECT_NAME }}/deployments/$ID?force=true" \
+              -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+              -H "Content-Type: application/json"
+          done
+
+      - name: Remove Custom Domain from Cloudflare Pages
+        run: |
+          CUSTOM_DOMAIN="${{ env.custom_domain }}"
+          echo "Removing Cloudflare Pages custom domain: $CUSTOM_DOMAIN"
+          curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CF_ACCOUNT_ID }}/pages/projects/${{ vars.PROJECT_NAME }}/domains/$CUSTOM_DOMAIN" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -H "Content-Type: application/json"
+
+      - name: Delete DNS Record for Custom Domain
+        run: |
+          RECORD_ID=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/dns_records?name=${{ env.custom_domain }}" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -H "Content-Type: application/json" | jq -r '.result[0].id')
+          if [[ -z "$RECORD_ID" || "$RECORD_ID" == "null" ]]; then
+            echo "No DNS record found for ${{ env.custom_domain }}."
+            exit 0
+          fi
+          echo "Deleting DNS record with ID: $RECORD_ID"
+          curl -X DELETE "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/dns_records/$RECORD_ID" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -H "Content-Type: application/json"
+
+      - name: Fetch GitHub Tag Associated with Deleted Branch
+        id: fetch-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Extract the version from the deleted branch (e.g., "release/v1.1.0")
+          DELETED_BRANCH="${{ github.event.ref }}"
+          # Handle cases with or without "v" prefix in branch name
+          BASE_VERSION=$(echo "$DELETED_BRANCH" | sed 's/^release\/v*//')
+
+          echo "Checking for tags matching pattern: v${BASE_VERSION}-beta"
+
+          TAGS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                       -H "Accept: application/vnd.github.v3+json" \
+                       "https://api.github.com/repos/${{ github.repository }}/tags" \
+                       | jq -r --arg PATTERN "v${BASE_VERSION}-beta" '.[] | select(.name | startswith($PATTERN)) | .name')
+
+          if [[ -z "$TAGS" ]]; then
+            echo "No matching beta tags found for branch: $DELETED_BRANCH"
+          else
+            echo "BETA_TAGS<<EOF" >> $GITHUB_ENV
+            echo "$TAGS" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+            echo "Found matching beta tags: $TAGS"
+          fi
+
+      - name: Delete Corresponding GitHub Tags
+        if: env.BETA_TAGS != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Deleting GitHub Pre-Release Tags:"
+          echo "${{ env.BETA_TAGS }}"
+
+          echo "${{ env.BETA_TAGS }}" | while read TAG_NAME; do
+            if [[ ! -z "$TAG_NAME" ]]; then
+              echo "Deleting tag: $TAG_NAME"
+              curl -X DELETE -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                  -H "Accept: application/vnd.github.v3+json" \
+                  "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$TAG_NAME"
+            fi
+          done
+
+          echo "All beta tags deleted successfully."

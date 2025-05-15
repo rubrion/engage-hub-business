@@ -1,0 +1,90 @@
+name: Pre Release Versioning
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    outputs:
+      release_branch: ${{ steps.set-release-branch.outputs.release_branch }}
+      release_tag: ${{ steps.get-release-tag.outputs.release_tag }}
+      domain_slug: ${{ steps.get-release-tag.outputs.domain_slug }}
+
+    steps:
+      - name: Create GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.RUBRION_APP_ID }}
+          private-key: ${{ secrets.RUBRION_APP_SECRET }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get Pre-Release Version
+        id: get-release-tag
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          LATEST_COMMIT_TYPE=$(git log -1 --pretty=%B | grep -oP '^(docs|style|test|build|ci|chore)(?:\(.*\))?:' | head -1 || echo "")
+
+          if [[ -n "$LATEST_COMMIT_TYPE" ]]; then
+            echo "Latest commit is of type: $LATEST_COMMIT_TYPE, which doesn't require version bump."
+            echo "No new release detected."
+            exit 0
+          fi
+
+          # Only proceed for feat, fix, refactor, perf types or if breaking change
+          RELEASE_TAG=$(npx release-it --ci --dry-run --preRelease=beta --git.requireBranch=develop | grep -oP 'Release \K[0-9]+\.[0-9]+\.[0-9]+(-beta\.[0-9]+)?' | head -n 1 | tr -d '\n' || echo "")
+
+          if [ -z "$RELEASE_TAG" ]; then
+            echo "No new release detected."
+            exit 0
+          fi
+
+          # Remove pre-release suffix for branch name
+          RELEASE_BASE=$(echo "$RELEASE_TAG" | sed 's/-beta\.[0-9]\+//')
+          {
+            echo "release_tag<<EOF"
+            echo "$RELEASE_TAG"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
+          {
+            echo "domain_slug<<EOF"
+            echo "$(echo "$RELEASE_TAG" | tr '[:upper:]' '[:lower:]')"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
+          echo "Next release version: $RELEASE_TAG"
+
+      - name: Create & Push New Release Branch
+        if: steps.get-release-tag.outputs.release_tag != ''
+        id: set-release-branch
+        run: |
+          RELEASE_TAG="${{ steps.get-release-tag.outputs.release_tag }}"
+          # Remove pre-release suffix for branch naming
+          RELEASE_BASE=$(echo "$RELEASE_TAG" | sed 's/-beta\.[0-9]\+//')
+          RELEASE_BRANCH="release/v$RELEASE_BASE"
+          # Ensure we branch off develop
+          git checkout develop
+          git checkout -b "$RELEASE_BRANCH" || git checkout "$RELEASE_BRANCH"
+          git push --set-upstream origin "$RELEASE_BRANCH"
+          {
+            echo "release_branch<<EOF"
+            echo "$RELEASE_BRANCH"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT

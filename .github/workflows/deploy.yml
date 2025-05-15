@@ -1,0 +1,134 @@
+name: Deployment Automation
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+
+jobs:
+  deploy:
+    # Prevent recursive triggers by checking for [skip ci] AND by checking if commit is from release-it
+    if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, 'chore(release)')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.RUBRION_APP_ID }}
+          private-key: ${{ secrets.RUBRION_APP_SECRET }}
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          fetch-depth: 0
+
+      - name: Set Git User Identity
+        run: |
+          git config --global user.name "Rubrion"
+          git config --global user.email "rubrion[bot]@users.noreply.github.com"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          projectName: ${{ vars.PROJECT_NAME }}
+          directory: dist
+          branch: ${{ github.ref_name }}
+
+      - name: Deploy Production Artifacts to Github and Cloudflare
+        if: github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          # Let release-it handle its own commits
+          npx release-it --ci
+
+          CUSTOM_DOMAIN="${{ vars.PROJECT_NAME }}.rubrion.com"
+
+          RESPONSE=$(curl -s -X GET "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CF_ACCOUNT_ID }}/pages/projects/${{ vars.PROJECT_NAME }}/domains" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}")
+
+          EXISTING_DOMAIN=$(echo "$RESPONSE" | jq -r '.result[]?.name' | grep -Fx "$CUSTOM_DOMAIN" || echo "")
+
+          if [ -z "$EXISTING_DOMAIN" ]; then
+            echo "Custom domain $CUSTOM_DOMAIN not found. Creating..."
+            curl -X POST "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CF_ACCOUNT_ID }}/pages/projects/${{ vars.PROJECT_NAME }}/domains" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+              --data '{
+                "name": "'"$CUSTOM_DOMAIN"'"
+              }'
+          else
+            echo "Custom domain $CUSTOM_DOMAIN is already set up. Skipping creation."
+          fi
+
+      - name: Merge Main Back to Develop
+        if: github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          echo "Syncing main branch changes to develop..."
+          git fetch --all
+
+          git checkout -B develop origin/develop
+
+          git merge --no-ff origin/main -m "chore(release): merge main into develop [skip ci]"
+
+          git push origin develop
+
+          echo "Successfully synced main branch to develop with commit history preserved"
+
+      - name: Deploy Pre-Release Artifacts to Github and Cloudflare
+        if: startsWith(github.ref, 'refs/heads/release/')
+        env:
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          npx release-it --ci --preRelease=beta --github.draft
+
+          BASE_VERSION=$(echo "${{ github.ref_name }}" | sed 's/^release\///' | sed 's/-beta.*//')
+          DOMAIN_SLUG="release-$(echo "$BASE_VERSION" | tr '.' '-')"
+          if [ -z "$DOMAIN_SLUG" ]; then
+            echo "No domain slug detected."
+            exit 1
+          fi
+          CUSTOM_DOMAIN="$DOMAIN_SLUG.${{ vars.PROJECT_NAME }}.rubrion.com"
+          CUSTOM_ALIAS="$DOMAIN_SLUG.${{ vars.PROJECT_NAME }}.pages.dev"
+          echo "Setting Cloudflare Custom Domain to: $CUSTOM_DOMAIN"
+          curl -X POST "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CF_ACCOUNT_ID }}/pages/projects/${{ vars.PROJECT_NAME }}/domains" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            --data '{
+              "name": "'"$CUSTOM_DOMAIN"'"
+            }'
+          echo "Creating DNS record for $CUSTOM_DOMAIN..."
+          echo "Setting custom DNS: $CUSTOM_DOMAIN -> $CUSTOM_ALIAS"
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/dns_records" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -d '{
+              "type": "CNAME",
+              "name": "'"$CUSTOM_DOMAIN"'",
+              "content": "'"$CUSTOM_ALIAS"'",
+              "ttl": 3600,
+              "proxied": true
+            }'

@@ -1,0 +1,61 @@
+name: Promote Release to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_branch:
+        description: 'Which release branch to promote to production? (e.g. "release/v1.1.0")'
+        required: true
+        type: string
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.RUBRION_APP_ID }}
+          private-key: ${{ secrets.RUBRION_APP_SECRET }}
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          fetch-depth: 0
+
+      - name: Set Git User Identity
+        run: |
+          git config --global user.name "Rubrion"
+          git config --global user.email "rubrion[bot]@users.noreply.github.com"
+
+      - name: Fetch Main and Release Branches
+        run: |
+          git fetch --all
+          git checkout main
+          git pull origin main
+
+          RELEASE_BRANCH="${{ github.event.inputs.release_branch }}"
+
+          if git show-ref --verify --quiet "refs/remotes/origin/$RELEASE_BRANCH"; then
+            echo "Release branch found: $RELEASE_BRANCH"
+            git checkout -b "$RELEASE_BRANCH" "origin/$RELEASE_BRANCH"
+          else
+            echo "Error: Release branch $RELEASE_BRANCH does not exist!"
+            exit 1
+          fi
+
+      - name: Merge Release Branch into Main
+        run: |
+          RELEASE_BRANCH="${{ github.event.inputs.release_branch }}"
+          echo "Merging $RELEASE_BRANCH into main..."
+          git checkout main
+          git merge --no-ff "$RELEASE_BRANCH"
+          git push origin main
+
+      - name: Delete Release Branch (Optional)
+        run: |
+          RELEASE_BRANCH="${{ github.event.inputs.release_branch }}"
+          echo "Deleting remote branch $RELEASE_BRANCH..."
+          git push origin --delete "$RELEASE_BRANCH"
