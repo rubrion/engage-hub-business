@@ -1,0 +1,29 @@
+{
+  "hero": {
+    "title": "Nuestros Socios"
+  },
+  "details": {
+    "overline": "SOCIOS",
+    "title": "Conozca a Nuestros Socios",
+    "buttonText": "Conviértase en Socio",
+    "footer": "Únase a nosotros para construir algo grandioso juntos"
+  },
+  "partners": [
+    {
+      "name": "Socio Uno",
+      "description": "Socio Uno es una empresa líder en la industria tecnológica.",
+      "website": "https://www.partnerone.com"
+    },
+    {
+      "name": "Socio Dos",
+      "description": "Socio Dos se especializa en soluciones innovadoras.",
+      "website": "https://www.partnertwo.com"
+    },
+    {
+      "name": "Socio Tres",
+      "description": "Socio Tres es conocido por sus servicios excepcionales.",
+      "website": "https://www.partnerthree.com"
+    }
+  ],
+  "websiteLabel": "Sitio Web:"
+}

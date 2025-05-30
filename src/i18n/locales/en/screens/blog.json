@@ -1,0 +1,20 @@
+{
+  "hero": {
+    "title": "Our Blog",
+    "subtitle": "Stay updated with the latest news, insights, and trends in our industry.",
+    "overline": "BLOG",
+    "subscribeButton": "Subscribe to Our Newsletter"
+  },
+  "content": {
+    "overline": "ARTICLES",
+    "title": "Latest Articles",
+    "readMore": "Read More",
+    "viewDetails": "View Details",
+    "noItemsTitle": "No Blog Posts Available",
+    "noItemsMessage": "Check back soon for new content!"
+  },
+  "loading": {
+    "items": "Loading blog posts",
+    "updating": "Updating posts"
+  }
+}

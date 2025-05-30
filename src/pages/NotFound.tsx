@@ -1,35 +1,40 @@
+import { Button, Container, Typography } from '@mui/material';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import PageHelmet from '../components/PageHelmet';
+import { useLocalizedContent } from '../hooks/useLocalizedContent';
+import BaseLayout from '../layouts/BaseLayout';
+import ROUTES from '../routes';
 
-function NotFound() {
+const NotFound: React.FC = () => {
+  const { getContent } = useLocalizedContent('screens', 'notFound');
+
+  const translations = {
+    title: getContent<string>('title'),
+    message: getContent<string>('message'),
+    returnHome: getContent<string>('returnHome'),
+  };
+
   return (
-    <div
-      className="not-found-page"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-      }}
-    >
-      <PageHelmet
-        title="Page Not Found | Rubrion Web Client"
-        description="The page you're looking for doesn't exist."
-      />
-
-      <div className="not-found-content" style={{ textAlign: 'center' }}>
-        <h1>404</h1>
-        <h2>Page Not Found</h2>
-        <p>The page you're looking for doesn't exist or has been moved.</p>
-
-        <Link to="/" className="back-home-btn">
-          Back to Home
-        </Link>
-      </div>
-    </div>
+    <BaseLayout>
+      <Container maxWidth="md" sx={{ textAlign: 'center', py: 8 }}>
+        <Typography variant="h1" component="h1" gutterBottom>
+          {translations.title}
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 4 }}>
+          {translations.message}
+        </Typography>
+        <Button
+          component={Link}
+          to={ROUTES.PUBLIC.HOME.path}
+          variant="contained"
+          color="primary"
+        >
+          {translations.returnHome}
+        </Button>
+      </Container>
+    </BaseLayout>
   );
-}
+};
 
 export default NotFound;

@@ -1,0 +1,89 @@
+{
+  "buttons": {
+    "readMore": "Leer Más",
+    "learnMore": "Saber Más",
+    "getStarted": "Comenzar",
+    "submit": "Enviar",
+    "sendMessage": "Enviar Mensaje",
+    "viewAll": "Ver Todo"
+  },
+  "forms": {
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "phone": "Número de Teléfono",
+    "message": "Mensaje",
+    "subject": "Asunto",
+    "customSubject": "Asunto Personalizado",
+    "required": "Obligatorio",
+    "invalidEmail": "Dirección de correo electrónico inválida"
+  },
+  "cta": {
+    "newsletter": "Suscríbete a Nuestro Boletín"
+  },
+  "errors": {
+    "generic": "Algo salió mal. Por favor, inténtalo de nuevo más tarde.",
+    "fileSize": "El tamaño del archivo excede el límite de {{size}}MB"
+  },
+  "success": {
+    "messageSent": "¡Gracias por tu mensaje! Nos pondremos en contacto pronto."
+  },
+  "social": {
+    "facebook": "Facebook",
+    "twitter": "X",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram",
+    "github": "GitHub"
+  },
+  "partners": {
+    "title": "Socios"
+  },
+  "organization": {
+    "name": "START Tech",
+    "logoText": "START"
+  },
+  "footer": {
+    "tagline": "Potenciando tu jornada digital",
+    "navigation": "Navegación",
+    "contact": "Contáctanos",
+    "rights": "Todos los derechos reservados.",
+    "links": {
+      "privacy": "Política de Privacidad",
+      "terms": "Términos de Servicio",
+      "cookies": "Política de Cookies"
+    },
+    "contactInfo": {
+      "email": "info@start.com",
+      "phone": "+1 234 567 8900",
+      "address": "123 Avenida Empresarial, Ciudad Tecnológica, CT 10111"
+    }
+  },
+  "newsletter": {
+    "title": "Suscríbete a Nuestro Newsletter",
+    "description": "Mantente actualizado con nuestras últimas noticias, artículos y ofertas exclusivas. Sin spam, cancela la suscripción en cualquier momento.",
+    "emailLabel": "Dirección de Correo Electrónico",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "invalidEmail": "Por favor, ingresa una dirección de correo electrónico válida",
+    "subscribeButton": "Suscribirse Ahora",
+    "privacyNotice": "Al suscribirte, aceptas nuestra Política de Privacidad y Términos de Servicio.",
+    "successTitle": "¡Gracias por Suscribirte!",
+    "successMessage": "Has sido agregado a nuestra lista de correos. ¡Te mantendremos informado sobre nuestras últimas actualizaciones!",
+    "closeButton": "Cerrar",
+    "close": "Cerrar"
+  },
+  "ui": {
+    "scrollToTop": "Volver arriba",
+    "logoAnimation": {
+      "tagline": "Mejorando el mundo con nuestras soluciones"
+    }
+  },
+  "blog": {
+    "hero": {
+      "subscribeButton": "Suscribirse al Newsletter"
+    }
+  },
+  "projects": {
+    "hero": {
+      "buttonText": "Ver Proyectos"
+    }
+  }
+}

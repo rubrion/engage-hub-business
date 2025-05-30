@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "title": "About Our Company",
+    "subtitle": "Learn about our mission, values, and the team behind our success.",
+    "overline": "ABOUT US",
+    "buttonText": "Meet Our Team"
+  },
+  "story": {
+    "title": "Our Story",
+    "content": [
+      "Founded in 2020, our company has grown from a small startup to a leader in the industry. We believe in innovation, quality, and customer satisfaction.",
+      "Our team consists of talented professionals who are passionate about creating exceptional products and services that make a difference in people's lives."
+    ]
+  },
+  "values": {
+    "overline": "VALUES",
+    "title": "What We Stand For",
+    "subtitle": "Our core values guide everything we do\nand shape our company culture.",
+    "items": [
+      {
+        "title": "Innovation",
+        "description": "Constantly pushing boundaries and exploring new ideas."
+      },
+      {
+        "title": "Quality",
+        "description": "Delivering excellence in everything we create."
+      },
+      {
+        "title": "Integrity",
+        "description": "Being honest, transparent, and ethical in all our actions."
+      },
+      {
+        "title": "Collaboration",
+        "description": "Working together to achieve common goals."
+      }
+    ]
+  }
+}

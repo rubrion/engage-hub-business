@@ -1,0 +1,48 @@
+{
+  "title": "Join Our Team",
+  "description": "We're always looking for talented individuals to join our team. Fill out the form and upload your CV to apply.",
+  "whyWorkWithUs": {
+    "title": "Why Work With Us",
+    "reasons": [
+      "Collaborative and innovative work environment",
+      "Competitive salary and benefits",
+      "Opportunities for professional growth",
+      "Work with cutting-edge technologies"
+    ]
+  },
+  "currentOpenings": {
+    "title": "Current Openings",
+    "positions": [
+      "Frontend Developers (React, TypeScript)",
+      "UI/UX Designers",
+      "Project Managers",
+      "Marketing Specialists"
+    ]
+  },
+  "form": {
+    "title": "Application Form",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "position": "Position",
+    "github": "GitHub Profile",
+    "linkedin": "LinkedIn Profile",
+    "uploadCV": "Upload CV",
+    "changeCV": "Change CV File",
+    "selectedFile": "Selected file: {{name}}",
+    "fileHelp": "Accept PDF, DOC, or DOCX files (max 5MB)",
+    "message": "Why do you want to join our team?",
+    "submit": "Submit Application",
+    "submitting": "Submitting...",
+    "success": "Application submitted successfully!",
+    "error": "There was an error submitting your application. Please try again."
+  },
+  "positions": [
+    "Developer",
+    "Designer",
+    "Product Manager",
+    "Marketing Specialist",
+    "Customer Support",
+    "Other"
+  ]
+}

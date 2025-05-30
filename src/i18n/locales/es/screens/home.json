@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "overline": "BIENVENIDO",
+    "title": "Soluciones Innovadoras para su Transformación Digital",
+    "subtitle": "Creamos aplicaciones web y móviles de vanguardia que ayudan a las empresas a crecer, optimizar operaciones y atraer clientes con experiencias digitales excepcionales."
+  },
+  "about": {
+    "overline": "SOBRE NOSOTROS",
+    "title": "Conozca Más Sobre Nosotros",
+    "subtitle": "Descubra nuestra misión, valores y el equipo detrás de nuestro éxito.",
+    "buttonText": "Leer Más"
+  },
+  "partners": {
+    "overline": "SOCIOS",
+    "title": "Nuestros Socios de Confianza",
+    "subtitle": "Colaboramos con empresas tecnológicas líderes para ofrecer soluciones excepcionales para nuestros clientes.",
+    "buttonText": "Ver Socios"
+  },
+  "team": {
+    "overline": "EQUIPO",
+    "title": "Nuestros Talentos",
+    "subtitle": "Conozca a los expertos detrás de nuestro éxito que aportan creatividad, experiencia técnica y pasión a cada proyecto.",
+    "buttonText": "Ver Equipo"
+  },
+  "cta": {
+    "becomePartner": "Conviértase en Socio",
+    "joinTeam": "Únase a Nuestro Equipo"
+  },
+  "teamMembers": [
+    {
+      "id": 1,
+      "name": "Peg Legge",
+      "role": "CEO",
+      "image": "mask-group.png"
+    },
+    {
+      "id": 2,
+      "name": "Richard Guerra",
+      "role": "CTO",
+      "image": "mask-group-1.png"
+    },
+    {
+      "id": 3,
+      "name": "Alexandra Stolz",
+      "role": "DISEÑADORA",
+      "image": "mask-group-2.png"
+    },
+    {
+      "id": 4,
+      "name": "Janet Bray",
+      "role": "DESARROLLADORA",
+      "image": "mask-group-3.png"
+    }
+  ]
+}

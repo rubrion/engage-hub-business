@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Detalhes do Projeto",
+    "description": "Informações detalhadas sobre este projeto"
+  },
+  "loading": {
+    "title": "Carregando detalhes do projeto...",
+    "error": "Erro ao carregar o projeto"
+  },
+  "notFound": {
+    "title": "Projeto Não Encontrado",
+    "message": "Desculpe, o projeto que você está procurando não pode ser encontrado.",
+    "button": "Voltar para Projetos"
+  },
+  "details": {
+    "category": "Categoria",
+    "date": "Data",
+    "technologies": "Tecnologias",
+    "github": "Repositório GitHub",
+    "website": "Site",
+    "authors": "Membros da Equipe",
+    "references": "Referências"
+  },
+  "navigation": {
+    "back": "Voltar para Projetos",
+    "next": "Próximo Projeto",
+    "previous": "Projeto Anterior"
+  },
+  "cta": {
+    "overline": "Interessado em nosso trabalho?",
+    "title": "Vamos discutir seu próximo projeto",
+    "button": "Entre em Contato"
+  }
+}

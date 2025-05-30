@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Peg Legge",
+    "role": "CEO",
+    "image": "/team/team-member1.png",
+    "bio": "Peg tiene más de 15 años de experiencia en la industria tecnológica y ha liderado múltiples startups exitosas. Supervisa la dirección estratégica y las iniciativas de crecimiento de la empresa.",
+    "expertise": [
+      "Planificación Estratégica",
+      "Desarrollo de Negocios",
+      "Liderazgo de Equipos"
+    ],
+    "education": "MBA de Harvard Business School",
+    "contact": "peg@start.com"
+  },
+  {
+    "id": 2,
+    "name": "Richard Guerra",
+    "role": "CTO",
+    "image": "/team/team-member2.png",
+    "bio": "Richard es un visionario tecnológico con pasión por la innovación. Lidera nuestro equipo técnico y asegura que estemos a la vanguardia de los avances tecnológicos.",
+    "expertise": [
+      "Arquitectura de Software",
+      "IA y Aprendizaje Automático",
+      "Infraestructura en la Nube"
+    ],
+    "education": "Ph.D. en Ciencias de la Computación del MIT",
+    "contact": "richard@start.com"
+  },
+  {
+    "id": 3,
+    "name": "Alexandra Stolz",
+    "role": "DISEÑADORA",
+    "image": "/team/team-member3.png",
+
+    "bio": "Alexandra aporta creatividad y principios de diseño centrados en el usuario a cada proyecto. Lidera nuestro equipo de diseño en la creación de interfaces de usuario hermosas y funcionales.",
+    "expertise": [
+      "Diseño UI/UX",
+      "Sistemas de Diseño",
+      "Investigación de Usuarios"
+    ],
+    "education": "BFA en Diseño Gráfico de RISD",
+    "contact": "alexandra@start.com"
+  },
+  {
+    "id": 4,
+    "name": "Janet Bray",
+    "role": "DESARROLLADORA",
+    "image": "/team/team-member4.png",
+
+    "bio": "Janet es una desarrolladora senior con experiencia en tecnologías frontend y backend. Le apasiona escribir código limpio y eficiente y mentorizar a desarrolladores junior.",
+    "expertise": [
+      "Desarrollo Full-Stack",
+      "Optimización de Rendimiento",
+      "Mentoría Técnica"
+    ],
+    "education": "BS en Ciencias de la Computación de Stanford University",
+    "contact": "janet@start.com"
+  },
+  {
+    "id": 5,
+    "name": "Michael Chen",
+    "role": "DIRECTOR DE MARKETING",
+    "image": "/team/team-member5.png",
+
+    "bio": "Michael lidera nuestros esfuerzos de marketing con un enfoque basado en datos. Tiene un historial de campañas exitosas que impulsan el crecimiento y la conciencia de marca.",
+    "expertise": ["Marketing Digital", "Estrategia de Contenido", "Analítica"],
+    "education": "BS en Marketing de NYU Stern",
+    "contact": "michael@start.com"
+  },
+  {
+    "id": 6,
+    "name": "Sarah Johnson",
+    "role": "GERENTE DE PROYECTOS",
+    "image": "/team/team-member6.png",
+
+    "bio": "Sarah asegura que nuestros proyectos se entreguen a tiempo y dentro del presupuesto. Es experta en coordinar equipos multifuncionales y gestionar proyectos complejos.",
+    "expertise": [
+      "Planificación de Proyectos",
+      "Metodologías Ágiles",
+      "Gestión de Riesgos"
+    ],
+    "education": "Certificación PMP, MBA de UC Berkeley",
+    "contact": "sarah@start.com"
+  }
+]

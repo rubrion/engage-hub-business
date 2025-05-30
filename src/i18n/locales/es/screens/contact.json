@@ -1,0 +1,33 @@
+{
+  "pageTitle": "Póngase en Contacto",
+  "pageDescription": "¡Nos encantaría saber de usted! Complete el formulario y nuestro equipo se pondrá en contacto con usted lo antes posible.",
+  "contactInfo": {
+    "title": "Información de Contacto",
+    "email": "Correo Electrónico: info@start.com",
+    "phone": "Teléfono: +1 (555) 123-4567",
+    "address": "Dirección: Calle Negocios 123, Suite 100, Ciudad, Estado, ZIP"
+  },
+  "businessHours": {
+    "title": "Horario de Atención",
+    "weekdays": "Lunes - Viernes: 9:00 AM - 5:00 PM",
+    "weekends": "Sábado - Domingo: Cerrado"
+  },
+  "form": {
+    "title": "Envíenos un Mensaje",
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "subject": "Asunto",
+    "customSubject": "Asunto Personalizado",
+    "message": "Mensaje",
+    "attachFile": "Adjuntar Archivo (máx. 5MB)",
+    "fileSize": "Tamaño del archivo: {{size}} MB",
+    "fileSizeError": "El tamaño del archivo excede el límite de 5MB",
+    "submit": "Enviar Mensaje",
+    "success": "¡Gracias por su mensaje! Nos pondremos en contacto con usted pronto."
+  },
+  "subjects": {
+    "partner": "Convertirse en Socio",
+    "services": "Contratar Servicios",
+    "other": "Otro"
+  }
+}

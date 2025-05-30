@@ -1,0 +1,34 @@
+{
+  "pageTitle": "Get In Touch",
+  "pageDescription": "We'd love to hear from you! Fill out the form and our team will get back to you as soon as possible.",
+  "contactInfo": {
+    "title": "Contact Information",
+    "email": "Email: info@start.com",
+    "phone": "Phone: +1 (555) 123-4567",
+    "address": "Address: 123 Business Street, Suite 100, City, State, ZIP"
+  },
+  "businessHours": {
+    "title": "Business Hours",
+    "weekdays": "Monday - Friday: 9:00 AM - 5:00 PM",
+    "weekends": "Saturday - Sunday: Closed"
+  },
+  "form": {
+    "title": "Send us a message",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "customSubject": "Custom Subject",
+    "message": "Message",
+    "attachFile": "Attach File (5MB max)",
+    "fileSize": "File size: {{size}} MB",
+    "fileSizeError": "File size exceeds 5MB limit",
+    "submit": "Send Message",
+    "success": "Thank you for your message! We will get back to you soon.",
+    "note": "* If you need to send attachments, please email them directly to"
+  },
+  "subjects": {
+    "partner": "Become a Partner",
+    "services": "Contract Services",
+    "other": "Other"
+  }
+}

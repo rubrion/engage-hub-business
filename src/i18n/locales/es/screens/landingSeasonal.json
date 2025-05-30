@@ -1,0 +1,22 @@
+{
+  "overline": "🚨 INSCRIPCIONES ABREN EL 24/05 🚨",
+  "title": "Tech Conference 2025",
+  "subtitle": "Un encuentro para discutir el presente y futuro de la tecnología en Brasil. Charlas con expertos, presentaciones de proyectos innovadores, networking y debates técnicos. 📍 Centro de Convenciones - Auditorio Principal - 14/06/2025",
+  "buttonText": "Entrar al Sitio",
+  "subscribeButtonText": "Inscribirse al Evento",
+  "location": "Centro de Convenciones - Auditorio Principal",
+  "date": "14/06/2025",
+  "subscriptionEndDate": "31/05/2025",
+  "subscriptionEndAlert": "⏰ Las inscripciones cierran el 31/05/2025 - ¡Últimas plazas disponibles!",
+  "features": [
+    "✨ Charlas con expertos en tecnología",
+    "🚀 Presentaciones de proyectos innovadores",
+    "🌎 Networking",
+    "🧠 Debates estratégicos y técnicos"
+  ],
+  "cta": "Si quieres estar entre aquellos que moldean el futuro de la tecnología en el país, este evento es para ti. ¡Mantente atento para las inscripciones y sé parte de esta transformación! 💡",
+  "sponsors": {
+    "title": "Patrocinadores Oficiales",
+    "subtitle": "Empresas líderes que apoyan la innovación tecnológica en Brasil"
+  }
+}
