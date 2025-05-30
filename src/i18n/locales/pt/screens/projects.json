@@ -1,0 +1,24 @@
+{
+  "screens": {
+    "projects": {
+      "hero": {
+        "title": "Nossos Projetos",
+        "subtitle": "Descubra nossas soluções inovadoras e projetos de sucesso",
+        "overline": "PROJETOS",
+        "buttonText": "Conheça nossos Serviços"
+      },
+      "content": {
+        "overline": "CASOS DE SUCESSO",
+        "title": "Projetos Recentes",
+        "readMore": "Saiba Mais",
+        "viewDetails": "Ver Detalhes",
+        "noItemsTitle": "Nenhum Projeto Encontrado",
+        "noItemsMessage": "Atualmente não há projetos disponíveis."
+      },
+      "loading": {
+        "items": "Carregando projetos...",
+        "updating": "Atualizando projetos..."
+      }
+    }
+  }
+}

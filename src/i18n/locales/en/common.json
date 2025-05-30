@@ -1,0 +1,95 @@
+{
+  "buttons": {
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "submit": "Submit",
+    "sendMessage": "Send Message",
+    "viewAll": "View All"
+  },
+  "forms": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "message": "Message",
+    "subject": "Subject",
+    "customSubject": "Custom Subject",
+    "required": "Required",
+    "invalidEmail": "Invalid email address"
+  },
+  "cta": {
+    "newsletter": "Subscribe to Our Newsletter"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again later.",
+    "fileSize": "File size exceeds the {{size}}MB limit"
+  },
+  "success": {
+    "messageSent": "Thank you for your message! We'll get in touch soon."
+  },
+  "social": {
+    "facebook": "Facebook",
+    "twitter": "X",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram",
+    "github": "GitHub",
+    "links": {
+      "twitter": "https://www.x.com/rubrion",
+      "linkedin": "https://www.linkedin.com/company/rubrion",
+      "instagram": "https://www.instagram.com/rubrion",
+      "github": "https://www.github.com/rubrion"
+    }
+  },
+  "partners": {
+    "title": "Partners"
+  },
+  "organization": {
+    "name": "START Tech",
+    "logoText": "START"
+  },
+  "footer": {
+    "tagline": "Empowering your digital journey",
+    "navigation": "Navigation",
+    "contact": "Contact Us",
+    "rights": "All rights reserved.",
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    },
+    "contactInfo": {
+      "email": "info@start.com",
+      "phone": "+1 234 567 8900",
+      "address": "123 Business Avenue, Tech City, CT 10111"
+    }
+  },
+  "newsletter": {
+    "title": "Subscribe to Our Newsletter",
+    "description": "Stay updated with our latest news, articles, and exclusive offers. No spam, unsubscribe at any time.",
+    "emailLabel": "Email Address",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Please enter a valid email address",
+    "subscribeButton": "Subscribe Now",
+    "privacyNotice": "By subscribing, you agree to our Privacy Policy and Terms of Service.",
+    "successTitle": "Thank You for Subscribing!",
+    "successMessage": "You've been added to our mailing list. We'll keep you informed about our latest updates!",
+    "closeButton": "Close",
+    "close": "Close"
+  },
+  "ui": {
+    "scrollToTop": "Back to top",
+    "logoAnimation": {
+      "tagline": "Improving the world with our solutions"
+    }
+  },
+  "blog": {
+    "hero": {
+      "subscribeButton": "Subscribe to Newsletter"
+    }
+  },
+  "projects": {
+    "hero": {
+      "buttonText": "View Projects"
+    }
+  }
+}

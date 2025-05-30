@@ -1,0 +1,48 @@
+{
+  "title": "Únase a Nuestro Equipo",
+  "description": "Siempre estamos buscando personas talentosas para unirse a nuestro equipo. Complete el formulario y cargue su CV para postularse.",
+  "whyWorkWithUs": {
+    "title": "Por Qué Trabajar Con Nosotros",
+    "reasons": [
+      "Ambiente de trabajo colaborativo e innovador",
+      "Salario competitivo y beneficios",
+      "Oportunidades de crecimiento profesional",
+      "Trabaje con tecnologías de vanguardia"
+    ]
+  },
+  "currentOpenings": {
+    "title": "Vacantes Actuales",
+    "positions": [
+      "Desarrolladores Frontend (React, TypeScript)",
+      "Diseñadores UI/UX",
+      "Gerentes de Proyecto",
+      "Especialistas en Marketing"
+    ]
+  },
+  "form": {
+    "title": "Formulario de Solicitud",
+    "fullName": "Nombre Completo",
+    "email": "Correo Electrónico",
+    "phone": "Número de Teléfono",
+    "position": "Posición",
+    "github": "Perfil de GitHub",
+    "linkedin": "Perfil de LinkedIn",
+    "uploadCV": "Cargar CV",
+    "changeCV": "Cambiar Archivo de CV",
+    "selectedFile": "Archivo seleccionado: {{name}}",
+    "fileHelp": "Acepta archivos PDF, DOC o DOCX (máx. 5MB)",
+    "message": "¿Por qué quiere unirse a nuestro equipo?",
+    "submit": "Enviar Solicitud",
+    "submitting": "Enviando..."
+  },
+  "positions": [
+    "Desarrollador",
+    "Diseñador",
+    "Gerente de Producto",
+    "Especialista en Marketing",
+    "Atención al Cliente",
+    "Otro"
+  ],
+  "success": "¡Solicitud enviada con éxito!",
+  "error": "Hubo un error al enviar su solicitud. Por favor, inténtelo de nuevo."
+}

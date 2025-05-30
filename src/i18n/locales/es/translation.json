@@ -1,0 +1,14 @@
+{
+  "navigation": {
+    "menu": {
+      "home": "Inicio",
+      "about": "Acerca",
+      "services": "Servicios",
+      "blog": "Blog",
+      "projects": "Proyectos",
+      "team": "Equipo",
+      "contact": "Contacto",
+      "partners": "Socios"
+    }
+  }
+}

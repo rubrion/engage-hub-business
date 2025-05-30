@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "overline": "SERVIÇOS",
+    "title": "O Que Oferecemos"
+  },
+  "services": [
+    {
+      "title": "Desenvolvimento Web",
+      "icon": "web-dev-icon.svg",
+      "description": "Sites e aplicativos web personalizados adaptados às necessidades do seu negócio.",
+      "features": [
+        "Design Responsivo",
+        "Soluções de E-commerce",
+        "Sistemas de Gerenciamento de Conteúdo"
+      ]
+    },
+    {
+      "title": "Desenvolvimento de Aplicativos Móveis",
+      "icon": "mobile-dev-icon.svg",
+      "description": "Aplicativos móveis nativos e multiplataforma para iOS e Android.",
+      "features": [
+        "Interface Amigável",
+        "Otimização de Performance",
+        "Funcionalidade Offline"
+      ]
+    },
+    {
+      "title": "Design UI/UX",
+      "icon": "design-icon.svg",
+      "description": "Soluções de design centradas no usuário que aprimoram a experiência e o engajamento.",
+      "features": [
+        "Pesquisa de Usuário",
+        "Wireframing e Prototipagem",
+        "Design Visual"
+      ]
+    },
+    {
+      "title": "Marketing Digital",
+      "icon": "marketing-icon.svg",
+      "description": "Estratégias abrangentes de marketing digital para expandir sua presença online.",
+      "features": [
+        "Otimização SEO",
+        "Marketing em Redes Sociais",
+        "Estratégia de Conteúdo"
+      ]
+    }
+  ],
+  "process": {
+    "overline": "PROCESSO",
+    "title": "Como Trabalhamos",
+    "subtitle": "Nosso processo otimizado garante a entrega eficiente e eficaz do seu projeto.",
+    "buttonText": "Começar",
+    "steps": [
+      {
+        "phase": "Descoberta",
+        "description": "Entendemos seus requisitos e objetivos."
+      },
+      {
+        "phase": "Planejamento",
+        "description": "Criamos um roteiro detalhado para seu projeto."
+      },
+      {
+        "phase": "Design",
+        "description": "Desenvolvemos wireframes e designs visuais."
+      },
+      {
+        "phase": "Desenvolvimento",
+        "description": "Construímos sua solução com código limpo e eficiente."
+      },
+      {
+        "phase": "Testes",
+        "description": "Testamos minuciosamente a qualidade e performance."
+      },
+      {
+        "phase": "Lançamento",
+        "description": "Implementamos sua solução e fornecemos suporte contínuo."
+      }
+    ],
+    "footer": "Conte-nos o que você precisa — entregaremos soluções personalizadas para o seu negócio."
+  }
+}

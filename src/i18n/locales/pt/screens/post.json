@@ -1,0 +1,15 @@
+{
+  "loading": "Carregando detalhes do artigo",
+  "updating": "Atualizando conteúdo do artigo",
+  "notFound": "Artigo não encontrado",
+  "backButton": "Voltar ao Blog",
+  "publishedOn": "Publicado em {{date}} por {{author}}",
+  "newsletter": {
+    "title": "Inscreva-se em Nossa Newsletter",
+    "description": "Mantenha-se atualizado com nossos artigos, notícias e insights mais recentes.",
+    "button": "Inscreva-se Agora"
+  },
+  "relatedPosts": {
+    "title": "Artigos Relacionados"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "buttons": {
+    "readMore": "Leia Mais",
+    "learnMore": "Saiba Mais",
+    "getStarted": "Começar",
+    "submit": "Enviar",
+    "sendMessage": "Enviar Mensagem",
+    "viewAll": "Ver Tudo"
+  },
+  "forms": {
+    "name": "Nome",
+    "email": "E-mail",
+    "phone": "Número de Telefone",
+    "message": "Mensagem",
+    "subject": "Assunto",
+    "customSubject": "Assunto Personalizado",
+    "required": "Obrigatório",
+    "invalidEmail": "Endereço de e-mail inválido"
+  },
+  "cta": {
+    "newsletter": "Inscreva-se em Nosso Boletim"
+  },
+  "errors": {
+    "generic": "Algo deu errado. Por favor, tente novamente mais tarde.",
+    "fileSize": "O tamanho do arquivo excede o limite de {{size}}MB"
+  },
+  "success": {
+    "messageSent": "Obrigado pela sua mensagem! Entraremos em contato em breve."
+  },
+  "social": {
+    "facebook": "Facebook",
+    "twitter": "X",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram",
+    "github": "GitHub"
+  },
+  "partners": {
+    "title": "Parceiros"
+  },
+  "organization": {
+    "name": "START Tech",
+    "logoText": "START"
+  },
+  "footer": {
+    "tagline": "Capacitando sua jornada digital",
+    "navigation": "Navegação",
+    "contact": "Contate-nos",
+    "rights": "Todos os direitos reservados.",
+    "links": {
+      "privacy": "Política de Privacidade",
+      "terms": "Termos de Serviço",
+      "cookies": "Política de Cookies"
+    },
+    "contactInfo": {
+      "email": "info@start.com",
+      "phone": "+1 234 567 8900",
+      "address": "123 Avenida Empresarial, Cidade da Tecnologia, CT 10111"
+    }
+  },
+  "newsletter": {
+    "title": "Inscreva-se em Nossa Newsletter",
+    "description": "Mantenha-se atualizado com nossas últimas notícias, artigos e ofertas exclusivas. Sem spam, cancele a inscrição a qualquer momento.",
+    "emailLabel": "Endereço de E-mail",
+    "emailRequired": "O e-mail é obrigatório",
+    "invalidEmail": "Por favor, insira um endereço de e-mail válido",
+    "subscribeButton": "Inscrever-se Agora",
+    "privacyNotice": "Ao se inscrever, você concorda com nossa Política de Privacidade e Termos de Serviço.",
+    "successTitle": "Obrigado por se Inscrever!",
+    "successMessage": "Você foi adicionado à nossa lista de e-mails. Manteremos você informado sobre nossas últimas atualizações!",
+    "closeButton": "Fechar",
+    "close": "Fechar"
+  },
+  "ui": {
+    "scrollToTop": "Voltar ao topo",
+    "logoAnimation": {
+      "tagline": "Melhorando o mundo com nossas soluções"
+    }
+  },
+  "blog": {
+    "hero": {
+      "subscribeButton": "Assinar Newsletter"
+    }
+  },
+  "projects": {
+    "hero": {
+      "buttonText": "Ver Projetos"
+    }
+  }
+}

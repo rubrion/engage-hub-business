@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "overline": "WELCOME",
+    "title": "Innovative Solutions for Your Digital Transformation",
+    "subtitle": "We create cutting-edge web and mobile applications that help businesses grow, streamline operations, and engage customers with exceptional digital experiences."
+  },
+  "about": {
+    "overline": "ABOUT US",
+    "title": "Learn More About Us",
+    "subtitle": "Discover our mission, values, and the team behind our success.",
+    "buttonText": "Read More"
+  },
+  "partners": {
+    "overline": "PARTNERS",
+    "title": "Our Trusted Partners",
+    "subtitle": "We collaborate with leading technology companies to deliver exceptional solutions for our clients.",
+    "buttonText": "View Partners"
+  },
+  "team": {
+    "overline": "TEAM",
+    "title": "Our Talents",
+    "subtitle": "Meet the experts behind our success who bring creativity, technical expertise, and passion to every project.",
+    "buttonText": "View Team"
+  },
+  "cta": {
+    "becomePartner": "Become Partner",
+    "joinTeam": "Join Our Team"
+  },
+  "teamMembers": [
+    {
+      "id": 1,
+      "name": "Peg Legge",
+      "role": "CEO",
+      "image": "mask-group.png"
+    },
+    {
+      "id": 2,
+      "name": "Richard Guerra",
+      "role": "CTO",
+      "image": "mask-group-1.png"
+    },
+    {
+      "id": 3,
+      "name": "Alexandra Stolz",
+      "role": "DESIGNER",
+      "image": "mask-group-2.png"
+    },
+    {
+      "id": 4,
+      "name": "Janet Bray",
+      "role": "DEVELOPER",
+      "image": "mask-group-3.png"
+    }
+  ]
+}

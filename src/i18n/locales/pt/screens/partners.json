@@ -1,0 +1,29 @@
+{
+  "hero": {
+    "title": "Nossos Parceiros"
+  },
+  "details": {
+    "overline": "PARCEIROS",
+    "title": "Conheça Nossos Parceiros",
+    "buttonText": "Torne-se Parceiro",
+    "footer": "Junte-se a nós para construir algo grandioso juntos"
+  },
+  "partners": [
+    {
+      "name": "Parceiro Um",
+      "description": "Parceiro Um é uma empresa líder na indústria de tecnologia.",
+      "website": "https://www.partnerone.com"
+    },
+    {
+      "name": "Parceiro Dois",
+      "description": "Parceiro Dois é especializado em soluções inovadoras.",
+      "website": "https://www.partnertwo.com"
+    },
+    {
+      "name": "Parceiro Três",
+      "description": "Parceiro Três é conhecido por seus serviços excepcionais.",
+      "website": "https://www.partnerthree.com"
+    }
+  ],
+  "websiteLabel": "Site:"
+}

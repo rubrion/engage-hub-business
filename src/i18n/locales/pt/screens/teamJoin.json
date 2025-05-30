@@ -1,0 +1,48 @@
+{
+  "title": "Junte-se à Nossa Equipe",
+  "description": "Estamos sempre em busca de pessoas talentosas para se juntar à nossa equipe. Preencha o formulário e envie seu CV para se candidatar.",
+  "whyWorkWithUs": {
+    "title": "Por Que Trabalhar Conosco",
+    "reasons": [
+      "Ambiente de trabalho colaborativo e inovador",
+      "Salário competitivo e benefícios",
+      "Oportunidades de crescimento profissional",
+      "Trabalhe com tecnologias de ponta"
+    ]
+  },
+  "currentOpenings": {
+    "title": "Vagas Abertas",
+    "positions": [
+      "Desenvolvedores Frontend (React, TypeScript)",
+      "Designers UI/UX",
+      "Gerentes de Projeto",
+      "Especialistas em Marketing"
+    ]
+  },
+  "form": {
+    "title": "Formulário de Inscrição",
+    "fullName": "Nome Completo",
+    "email": "E-mail",
+    "phone": "Número de Telefone",
+    "position": "Posição",
+    "github": "Perfil do GitHub",
+    "linkedin": "Perfil do LinkedIn",
+    "uploadCV": "Enviar CV",
+    "changeCV": "Alterar Arquivo do CV",
+    "selectedFile": "Arquivo selecionado: {{name}}",
+    "fileHelp": "Aceita arquivos PDF, DOC ou DOCX (máx. 5MB)",
+    "message": "Por que você quer se juntar à nossa equipe?",
+    "submit": "Enviar Inscrição",
+    "submitting": "Enviando..."
+  },
+  "positions": [
+    "Desenvolvedor",
+    "Designer",
+    "Gerente de Produto",
+    "Especialista em Marketing",
+    "Atendimento ao Cliente",
+    "Outro"
+  ],
+  "success": "Inscrição enviada com sucesso!",
+  "error": "Houve um erro ao enviar sua inscrição. Por favor, tente novamente."
+}

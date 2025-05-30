@@ -1,0 +1,20 @@
+{
+  "hero": {
+    "title": "Our Projects",
+    "subtitle": "Discover our innovative solutions and successful projects",
+    "overline": "PROJECTS",
+    "buttonText": "Know Our Services"
+  },
+  "content": {
+    "overline": "SUCCESS STORIES",
+    "title": "Recent Projects",
+    "readMore": "Learn More",
+    "viewDetails": "View Details",
+    "noItemsTitle": "No Projects Found",
+    "noItemsMessage": "No projects are currently available."
+  },
+  "loading": {
+    "items": "Loading projects...",
+    "updating": "Updating projects..."
+  }
+}
