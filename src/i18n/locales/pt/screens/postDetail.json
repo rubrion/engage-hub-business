@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "Blog Post Details",
+    "description": "Detailed information about this blog post"
+  },
+  "loading": {
+    "title": "Loading blog post...",
+    "error": "Error loading blog post"
+  },
+  "notFound": {
+    "title": "Blog Post Not Found",
+    "message": "Sorry, the blog post you are looking for cannot be found.",
+    "button": "Back to Blog"
+  },
+  "sections": {
+    "author": "Author Information",
+    "details": "Post Details",
+    "tags": "Tags"
+  },
+  "details": {
+    "author": "Author",
+    "email": "Email",
+    "date": "Date",
+    "share": "Share",
+    "publishedOn": "Published On",
+    "category": "Category",
+    "readTime": "Reading Time",
+    "participants": "Participants"
+  },
+  "newsletter": {
+    "title": "Subscribe to Our Newsletter",
+    "description": "Stay updated with our latest news and articles",
+    "button": "Subscribe Now"
+  },
+  "navigation": {
+    "back": "Back to Blog",
+    "next": "Next Post",
+    "previous": "Previous Post"
+  },
+  "cta": {
+    "overline": "Interested in our insights?",
+    "title": "Read more from our blog",
+    "button": "View All Articles"
+  }
+}

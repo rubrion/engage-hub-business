@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Parceiro Um",
+    "subtitle": "Parceiro Tecnológico",
+    "description": "Parceiro Um é uma empresa líder na indústria de tecnologia.",
+    "website": "https://www.partnerone.com",
+    "logo": "/partners/airbnb-logo.svg"
+  },
+  {
+    "id": 2,
+    "name": "Parceiro Dois",
+    "subtitle": "Parceiro de Inovação",
+    "description": "Parceiro Dois se especializa em soluções inovadoras.",
+    "website": "https://www.partnertwo.com",
+    "logo": "/partners/microsoft-logo.svg"
+  },
+  {
+    "id": 3,
+    "name": "Parceiro Três",
+    "subtitle": "Parceiro de Serviços",
+    "description": "Parceiro Três é conhecido por seus serviços excepcionais.",
+    "website": "https://www.partnerthree.com",
+    "logo": "/partners/spotify-logo.svg"
+  },
+  {
+    "id": 4,
+    "name": "Parceiro Quatro",
+    "subtitle": "Parceiro Estratégico",
+    "description": "Parceiro Quatro oferece transformação digital abrangente.",
+    "website": "https://www.partnerfour.com",
+    "logo": "/partners/facebook-logo.svg"
+  },
+  {
+    "id": 5,
+    "name": "Parceiro Cinco",
+    "subtitle": "Parceiro de Nuvem",
+    "description": "Parceiro Cinco é líder do setor em soluções de nuvem.",
+    "website": "https://www.partnerfive.com",
+    "logo": "/partners/google-logo.svg"
+  }
+]

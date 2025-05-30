@@ -1,0 +1,22 @@
+{
+  "overline": "🚨 REGISTRATION OPENS ON 05/24 🚨",
+  "title": "Tech Conference 2025",
+  "subtitle": "A gathering to discuss the present and future of technology in Brazil. Talks with experts, innovative project presentations, networking, and technical debates. 📍 Convention Center - Main Auditorium - 06/14/2025",
+  "buttonText": "Enter Site",
+  "subscribeButtonText": "Register for Event",
+  "location": "Convention Center - Main Auditorium",
+  "date": "06/14/2025",
+  "subscriptionEndDate": "05/31/2025",
+  "subscriptionEndAlert": "⏰ Registration closes on 05/31/2025 - Last spots available!",
+  "features": [
+    "✨ Talks with top tech experts",
+    "🚀 Presentations of innovative projects",
+    "🌎 Networking",
+    "🧠 Strategic and technical debates"
+  ],
+  "cta": "If you want to be among those shaping the future of technology in the country, this event is for you. Stay tuned for registration and be part of this transformation! 💡",
+  "sponsors": {
+    "title": "Official Sponsors",
+    "subtitle": "Leading companies supporting technological innovation in Brazil"
+  }
+}

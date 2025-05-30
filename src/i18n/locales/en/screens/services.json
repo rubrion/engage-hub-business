@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "overline": "SERVICES",
+    "title": "What We Offer"
+  },
+  "services": [
+    {
+      "title": "Web Development",
+      "icon": "web-dev-icon.svg",
+      "description": "Custom websites and web applications tailored to your business needs.",
+      "features": [
+        "Responsive Design",
+        "E-commerce Solutions",
+        "Content Management Systems"
+      ]
+    },
+    {
+      "title": "Mobile App Development",
+      "icon": "mobile-dev-icon.svg",
+      "description": "Native and cross-platform mobile applications for iOS and Android.",
+      "features": [
+        "User-Friendly Interface",
+        "Performance Optimization",
+        "Offline Functionality"
+      ]
+    },
+    {
+      "title": "UI/UX Design",
+      "icon": "design-icon.svg",
+      "description": "User-centered design solutions that enhance user experience and engagement.",
+      "features": [
+        "User Research",
+        "Wireframing & Prototyping",
+        "Visual Design"
+      ]
+    },
+    {
+      "title": "Digital Marketing",
+      "icon": "marketing-icon.svg",
+      "description": "Comprehensive digital marketing strategies to grow your online presence.",
+      "features": [
+        "SEO Optimization",
+        "Social Media Marketing",
+        "Content Strategy"
+      ]
+    }
+  ],
+  "process": {
+    "overline": "PROCESS",
+    "title": "How We Work",
+    "subtitle": "Our streamlined process ensures efficient\nand effective delivery of your project.",
+    "buttonText": "Get Started",
+    "steps": [
+      {
+        "phase": "Discovery",
+        "description": "We understand your requirements and objectives."
+      },
+      {
+        "phase": "Planning",
+        "description": "We create a detailed roadmap for your project."
+      },
+      {
+        "phase": "Design",
+        "description": "We develop wireframes and visual designs."
+      },
+      {
+        "phase": "Development",
+        "description": "We build your solution with clean, efficient code."
+      },
+      {
+        "phase": "Testing",
+        "description": "We thoroughly test for quality and performance."
+      },
+      {
+        "phase": "Launch",
+        "description": "We deploy your solution and provide ongoing support."
+      }
+    ],
+    "footer": "Tell us what you need — we'll deliver tailored solutions for your business."
+  }
+}

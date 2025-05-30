@@ -1,301 +1,469 @@
-# Rubrion Web Client Template
 
-A comprehensive React + TypeScript frontend starter template with built-in routing, SEO optimization, theming, mock services, and more. This template provides a standardized starting point for Rubrion web client projects.
+<kbd>[<img title="Português (Brasil)" alt="Português (Brasil)" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](./README-pt-BR.md)</kbd>
+
+# Rubrion Engage Hub - Business Platform
+
+A multilingual, multi-tenant white-label platform that serves as the core business solution within Rubrion's ecosystem. This platform enables organizations and companies to deploy their own branded digital presence with full localization support, leveraging Rubrion's "code-free, cloud-fee" model.
+
+## 🚀 Live Demo
+
+Experience the platform in action with mocked data:
+
+**[https://engage-hub.rubrion.com/](https://engage-hub.rubrion.com/)**
+
+## About Rubrion
+
+Rubrion brings advanced digital services to organizations using a **"code-free, cloud-fee" model**: we deliver pre-configured, hosted, and maintained open-source SaaS solutions (CMS, e-commerce, LMS, etc.) so that clients don't need to code or pay for proprietary licenses—only covering infrastructure costs and usage-based fees.
+
+We use **white-label, multi-tenant architectures**: most of the codebase is shared, but each instance is deployed as an isolated, atomic service, ensuring secure and scalable environments. As the technical lead partner, we automate deployment pipelines, manage hosting partnerships, adjust plans based on actual usage, and reinvest part of the revenue into free software—completing a cycle that makes technology accessible and strengthens the impact ecosystem.
+
+## Platform Overview
+
+The Engage Hub Business Platform is a comprehensive React + TypeScript solution designed for:
+
+- **Multi-tenant Architecture**: Single codebase serving multiple isolated client instances
+- **Multilingual Support**: Complete i18n implementation with remote content management
+- **White-label Branding**: Customizable themes, content, and features per tenant
+- **Scalable Infrastructure**: Built for cloud deployment with automated CI/CD
+- **Open Source Foundation**: Leveraging community-driven technologies
 
 ## Table of Contents
 
-- [Features](#features)
-- [Feature Usage Guidelines](#feature-usage-guidelines)
-  - [Routing (React Router)](#routing-react-router)
-  - [SEO with PageHelmet](#seo-with-pagehelmet)
-  - [Mock Service Worker (MSW)](#mock-service-worker-msw)
-  - [Theme System (Dark/Light Modes)](#theme-system-darklight-modes)
-  - [Breadcrumbs](#breadcrumbs)
-  - [Lazy Loading](#lazy-loading)
-  - [MSW Initialization Command](#msw-initialization-command)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [Multi-tenant Capabilities](#multi-tenant-capabilities)
+- [Internationalization](#internationalization)
 - [Getting Started](#getting-started)
-  - [Installation](#installation)
-- [Project Structure](#project-structure)
-- [How to Use](#how-to-use)
-- [Release and Deployment](#release-and-deployment)
-- [Scripts](#scripts)
-- [Setting up Blackbox for File Encryption](#setting-up-blackbox-for-file-encryption)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
 
-## Features
+## Key Features
 
-- **Vite**: Fast, modern build tool for development
-- **React + TypeScript**: Strong typing with modern React
-- **ESLint & Prettier**: Code quality and consistent formatting
-- **React Router**: Type-safe routing with navigation and SEO metadata
-- **MSW (Mock Service Worker)**: API mocking for development and testing
-- **Theme System**: Dark/light mode with CSS variables
-- **SEO Optimization**: Helmet-based metadata management
-- **Lazy Loading**: Code-splitting for performance
-- **Breadcrumbs**: Automatic navigation breadcrumbs
-- **EditorConfig**: Consistent coding styles across editors
-- **Material UI**: Comprehensive UI component library
-- **Automated CI/CD**: GitHub Actions for deployment and releases
-- **Release Management**: Automated versioning and changelogs
+### Core Platform Capabilities
+- **Multi-tenant White-label Architecture**: Single codebase serving multiple isolated client instances
+- **Comprehensive Internationalization**: Static UI translations + dynamic remote content management
+- **Real-time Content Management**: Firestore-based multilingual content with language fallbacks
+- **Flexible Data Sources**: Support for Firestore, REST APIs, and MSW mocking
+- **Advanced Theming**: Per-tenant customizable themes with dark/light mode support
+- **Enterprise-grade Routing**: Type-safe routing with SEO metadata and lazy loading
 
-## Feature Usage Guidelines
+### Development & Operations
+- **Modern Tech Stack**: React 19 + TypeScript + Vite for optimal performance
+- **Automated CI/CD**: GitHub Actions with semantic versioning and deployment automation
+- **Quality Assurance**: ESLint, Prettier, Vitest with comprehensive testing suite
+- **Development Tools**: MSW for API mocking, debug utilities, and tenant switching
+- **Security**: BlackBox file encryption for sensitive configuration
+- **Performance**: Code splitting, lazy loading, and optimized caching strategies
 
-This template provides many features to make development easier. However, not all features are necessary for every project. Below are recommendations on when to use each one:
+### Business Features
+- **Professional Pages**: Home, About, Services, Projects, Blog, Contact, Team
+- **Content Showcase**: Project portfolios, team profiles, service descriptions
+- **Partner Integration**: Partner logos and information display
+- **Contact Management**: Multi-channel contact forms and information
+- **SEO Optimization**: Helmet-based metadata management with per-tenant customization
 
-### Routing (React Router)
+## Architecture
 
-- Use for multi-page or multi-route apps.
-- If building a simple single-page app, you can remove or reduce routing complexity.
-- Named routing works best for SEO or when you need route-based metadata (e.g., dynamic blog pages).
+### Multi-tenant Design
+```
+Single Deployment → Multiple Client Sites
+├── acme.rubrion.com (Tenant: acme)
+├── beta.rubrion.com (Tenant: beta)
+└── demo.rubrion.com (Tenant: demo)
+```
 
-### SEO with PageHelmet
+Each tenant has isolated:
+- **Configuration**: Theme, features, contact information
+- **Content**: Projects, blog posts, team members, services
+- **Branding**: Logo, colors, typography, custom styling
+- **Data**: Separate Firestore collections with tenant namespacing
 
-- Ideal for public-facing apps that need search engine visibility.
-- In small internal tools, you can remove it if SEO is not required.
+### Technology Stack
+- **Frontend**: React 19, TypeScript, Material-UI, Framer Motion
+- **Routing**: React Router with type-safe navigation
+- **State Management**: React Context + TanStack Query
+- **Internationalization**: i18next with remote content support
+- **Database**: Firestore with multi-tenant data architecture
+- **Development**: Vite, MSW, Vitest, ESLint, Prettier
+- **Deployment**: GitHub Actions, automated versioning
 
-### Mock Service Worker (MSW)
+## Multi-tenant Capabilities
 
-- Use when you need to mock or simulate API requests during development or tests.
-- If your app has no API calls or you have full backend coverage from the start, MSW can be removed.
+### Tenant Resolution
+- **Production**: Subdomain-based (`acme.rubrion.com` → `acme`)
+- **Development**: Query parameter (`localhost:3000?tenant=acme`)
+- **Fallback**: Demo tenant for development environments
 
-### Theme System (Dark/Light Modes)
+### Per-tenant Customization
+- **Themes**: Primary/secondary colors, typography, spacing
+- **Features**: Toggle newsletter, blog, contact forms, analytics
+- **Content**: Localized projects, services, team information
+- **Branding**: Custom logos, company information, social links
 
-- Applies consistent styles across the app and allows easy theme switching.
-- If the project does not require a dark mode or theme customization, you can remove the `ThemeContext` and simplify the CSS variables.
+### Data Isolation
+```
+tenants/
+├── acme/
+│   ├── config: { theme, features, contact }
+│   ├── projects/
+│   ├── blog/
+│   └── team/
+├── beta/
+│   └── ...
+```
 
-### Breadcrumbs
+## Internationalization
 
-- Helpful if you have nested routes or want users to navigate deeper pages more easily.
-- Can be removed for flat or very simple navigation structures.
+### Static Translations (UI Elements)
+- **Supported Languages**: English, Spanish, Portuguese (extensible)
+- **Translation Files**: JSON-based with hierarchical organization
+- **Utilities**: Type-safe translation functions with fallbacks
+- **Development**: Missing translation detection and debugging
 
-### Lazy Loading
+### Dynamic Remote Content
+- **Firestore Structure**: Language-specific subcollections per document
+- **API Transparency**: Returns content with actual language used
+- **Fallback Strategy**: Automatic fallback to English when translations unavailable
+- **MSW Integration**: Mock multilingual responses for development
 
-- Improves performance by splitting code into smaller chunks.
-- Recommended for larger apps, but can be skipped in small projects with minimal code.
-
-### MSW Initialization Command
-
-- If you use MSW to intercept requests at path `'/'`, you must run:
-  ```
-  npx msw init ./public --save
-  ```
-  once for each new project or whenever you re-create the `/public` folder.
+### Language Selection
+- **Persistent**: Language preference maintained across navigation
+- **Fallback**: Graceful degradation when content unavailable
 
 ## Getting Started
 
-### Installation
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Git
 
-1. Clone this template:
+### Quick Start
 
+1. **Clone the Repository**
    ```bash
-   git clone https://github.com/rubrion/web-client-template.git my-project
-   cd my-project
+   git clone https://github.com/rubrion/engage-hub-business.git
+   cd engage-hub-business
    ```
 
-2. Install dependencies:
-
+2. **Install Dependencies**
    ```bash
    npm install
    ```
 
-3. Start development server:
+3. **Initialize MSW (Mock Service Worker)**
    ```bash
-   npm run dev
+   npx msw init ./public --save
    ```
 
-## Project Structure
+4. **Start Development Server**
+   ```bash
+   # Start with demo tenant
+   npm run dev
+   
+   # Start with specific tenant
+   npm run dev -- --tenant=acme
+   ```
 
-```markdown
-# Vite + React + TypeScript Template with ESLint & Prettier
+5. **Access the Application**
+   ```
+   http://localhost:3000          # Demo tenant
+   http://localhost:3000?tenant=acme  # Specific tenant
+   ```
 
-This template provides a consistent starting point for frontend projects built with Vite, React, and TypeScript. It integrates ESLint and Prettier to enforce code quality and style consistency across multiple development environments.
+### Environment Configuration
+
+Create a `.env` file for your environment:
+
+```env
+# Firebase Configuration (for Firestore)
+VITE_FIREBASE_CONFIG='{"apiKey":"...","authDomain":"...","projectId":"..."}'
+
+# Feature Flags
+VITE_USE_FIRESTORE=false
+VITE_ENABLE_ANALYTICS=true
+VITE_ENABLE_NEWSLETTER=true
+VITE_MAINTENANCE_MODE=false
+
+# API Configuration
+VITE_API_URL=https://api.rubrion.com/{tenant}
 ```
 
-## How to Use
+## Development
 
-1. **Clone the Template**:
+### Project Structure
+```
+src/
+├── components/           # Reusable UI components
+│   ├── ui/              # Basic UI components
+│   ├── content/         # Content-specific components
+│   └── translation/     # Translation utilities
+├── context/             # React contexts (Theme, Tenant, Language)
+├── core/                # Core utilities (tenant resolution)
+├── hooks/               # Custom React hooks
+├── i18n/                # Internationalization
+│   ├── locales/         # Translation files
+│   └── msw/             # MSW handlers for i18n
+├── pages/               # Page components
+├── routes/              # Routing configuration
+├── services/            # API services and data fetching
+├── theme/               # Theme configuration
+└── utils/               # Utility functions
+```
 
-   ```bash
-   git clone <template-repo-url> my-new-project
-   cd my-new-project
+### Development Scripts
+
+```bash
+# Development
+npm run dev              # Start development server
+npm run dev:prod         # Start in production mode
+
+# Building
+npm run build            # Build for production
+npm run build:mocked     # Build with mocked data
+npm run preview          # Preview production build
+
+# Code Quality
+npm run lint             # Run ESLint
+npm run lint:fix         # Fix ESLint issues
+npm run format           # Format with Prettier
+npm run format:check     # Check formatting
+
+# Testing
+npm run test             # Run tests
+npm run test:coverage    # Generate coverage report
+npm run test:ui          # Open Vitest UI
+
+# Utilities
+npm run clean:logs:check # Check for console.log statements
+npm run clean:logs:fix   # Replace console.log with debugLog
+```
+
+### Adding a New Tenant
+
+1. **Create Tenant Configuration** (in Firestore or mock data)
+   ```json
+   {
+     "name": "New Company",
+     "theme": {
+       "primary": "#1976d2",
+       "secondary": "#dc004e"
+     },
+     "features": {
+       "newsletter": true,
+       "blog": true,
+       "analytics": true
+     },
+     "contact": {
+       "email": "info@newcompany.com",
+       "phone": "+1234567890"
+     }
+   }
    ```
 
-2. **Install Dependencies**:
-
+2. **Add Content** (projects, team, services)
+3. **Test Locally**
    ```bash
-   npm install
+   npm run dev -- --tenant=newcompany
    ```
 
-3. **Start the Development Server**:
+### Adding New Languages
 
-   ```bash
-   npm run dev
+1. **Create Translation Files**
+   ```
+   src/i18n/locales/de/
+   ├── index.ts
+   ├── common.json
+   ├── navigation.json
+   └── screens/
+       ├── home.json
+       ├── about.json
+       └── ...
    ```
 
-4. **Build the Project**:
-
-   ```bash
-   npm run build
+2. **Update Language Context**
+   ```typescript
+   // src/context/LanguageContext.tsx
+   const languages = ['en', 'es', 'pt', 'de'];
    ```
 
-5. **Preview the Production Build**:
-
-   ```bash
-   npm run preview
+3. **Add Remote Content** (in Firestore)
+   ```
+   projects/{projectId}/de/content/
+   blogPosts/{postId}/de/content/
    ```
 
-6. **Lint the Project**:
+## Deployment
 
+### Automated Deployment
+
+The platform uses GitHub Actions for automated deployment:
+
+1. **Development**: Push to `develop` branch triggers development deployment
+2. **Staging**: Create release branch for staging deployment  
+3. **Production**: Merge to `main` branch triggers production deployment
+
+### Manual Deployment
+
+```bash
+# Initialize main branch (for new projects)
+bash scripts/init-main-branch.sh
+
+# Build for production
+npm run build
+
+# Deploy to hosting provider
+# (Configure based on your hosting solution)
+```
+
+### Environment-specific Builds
+
+```bash
+# Development build with mocks
+npm run build:mocked
+
+# Production build
+npm run build
+```
+
+For detailed deployment information, see [docs/pipeline.md](./docs/pipeline.md).
+
+## Documentation
+
+Comprehensive documentation is available in the `docs/` directory:
+
+- **[Architecture Overview](./docs/architecture-overview.md)** - System design and structure
+- **[Multi-tenant Guide](./docs/multi-tenant.md)** - Multi-tenancy implementation
+- **[Internationalization](./docs/i18n.md)** - Complete i18n guide
+- **[Data Services](./docs/data-services.md)** - Data layer documentation
+- **[Theming System](./docs/theming.md)** - Theme customization
+- **[Routing System](./docs/routing-system.md)** - Navigation and routing
+- **[Component Library](./docs/component-library.md)** - UI components
+- **[Debug System](./docs/debug-system.md)** - Development tools
+- **[Environment Variables](./docs/environment-variables.md)** - Configuration
+- **[CI/CD Pipeline](./docs/pipeline.md)** - Deployment processes
+
+## Contributing
+
+### Development Setup
+
+1. **Fork the Repository**
+2. **Create Feature Branch**
    ```bash
+   git checkout -b feature/new-feature
+   ```
+3. **Make Changes**
+4. **Run Tests**
+   ```bash
+   npm run test
    npm run lint
    ```
+5. **Submit Pull Request**
 
-7. **Fix Linting Issues**:
+### Code Standards
 
+- **TypeScript**: Strict mode enabled
+- **ESLint**: Airbnb configuration with custom rules
+- **Prettier**: Consistent code formatting
+- **Testing**: Vitest with React Testing Library
+- **Commits**: Conventional commit messages
+
+### Tenant Data Seeding
+
+Use the provided scripts for consistent development data:
+
+```bash
+# Seed specific tenant
+npm run seed:tenant -- --tenant=acme
+
+# Seed all tenants  
+npm run seed:all
+```
+
+## Security & Configuration
+
+### BlackBox File Encryption
+
+For secure handling of sensitive configuration files, this project uses StackExchange BlackBox:
+
+#### Setup Instructions
+
+1. **Install BlackBox**
    ```bash
-   npm run lint:fix
+   git clone https://github.com/StackExchange/blackbox.git
+   cd blackbox
+   sudo make copy-install
    ```
 
-8. **Format the Codebase**:
-
+2. **Import GPG Keys** (obtain from project maintainer)
    ```bash
-   npm run format
+   # Import public key
+   echo "base64_encoded_public_key" | base64 --decode | gpg --import
+   
+   # Import private key  
+   echo "base64_encoded_private_key" | base64 --decode | gpg --import
    ```
 
-9. **Check Code Formatting**:
-
+3. **Verify Import**
    ```bash
-   npm run format:check
+   gpg --list-secret-keys
    ```
 
-10. **Run Unit Tests**:
-
-    ```bash
-    npm run test
-    ```
-
-11. **Generate Coverage Reports**:
-
-    ```bash
-    npm run test:coverage
-    ```
-
-12. **Open Vitest UI**:
-
-    ```bash
-    npm run test:ui
-    ```
-
-## Release and Deployment
-
-This project includes a comprehensive CI/CD pipeline for releases and deployments. For detailed information about the release process, see [PIPELINE.md](./PIPELINE.md).
-
-### Main Branch Initialization
-
-When starting a new project with an empty main branch:
-
-```bash
-npm run init-main
-```
-
-This will initialize the main branch from your develop branch, allowing the deployment pipeline to function properly.
-
-### Release Process
-
-1. Make your changes on the develop branch
-2. The CI pipeline automatically creates release branches with semantic versioning
-3. To manually release a new version:
+4. **Decrypt Project Files**
    ```bash
-   npm run release
+   blackbox_decrypt_all_files
    ```
-4. To create a distributable package:
-   ```bash
-   npm run package
-   ```
-   This creates a `release.zip` file containing the built application
 
-### Promoting Pre-releases to Production
+### Environment Security
 
-Use the GitHub Actions workflow "Promote Release to Production" to merge a release branch into main, triggering production deployment.
+- Sensitive configuration stored encrypted in repository
+- Environment variables for deployment-specific settings
+- Separate Firebase projects for development/staging/production
+- Tenant-specific security isolation
 
-## Scripts
+---
 
-- **`npm run dev`**: Start the development server.
-- **`npm run build`**: Create a production-ready build.
-- **`npm run preview`**: Preview the production build.
-- **`npm run lint`**: Lint the codebase using ESLint.
-- **`npm run lint:fix`**: Automatically fix linting issues where possible.
-- **`npm run format`**: Format the codebase with Prettier.
-- **`npm run format:check`**: Check if the codebase is properly formatted.
-- **`npm run test`**: Run all unit tests with Vitest.
-- **`npm run test:coverage`**: Generate a coverage report for the tests.
-- **`npm run test:ui`**: Open the Vitest UI for managing and running tests interactively.
-- **`npm run setup`**: Set up editor configurations and git hooks for consistent code formatting.
-- **`npm run init-main`**: Initialize and sync the main branch from develop branch.
-- **`npm run release`**: Create a new release with proper versioning and changelog updates.
-- **`npm run package`**: Build the project and create a ZIP archive for distribution.
+## Rubrion Ecosystem Integration
 
-## Setting up Blackbox for File Encryption
+This platform is part of Rubrion's broader ecosystem of open-source SaaS solutions:
 
-To securely encrypt sensitive files in this project using **StackExchange Blackbox**, follow these steps:
+### Related Platforms
+- **Content Management**: Headless CMS with multi-tenant support
+- **E-commerce**: White-label online store platform  
+- **Learning Management**: Educational content delivery system
+- **Analytics**: Privacy-focused analytics dashboard
 
-#### 1. Install `BlackBox`
+### Business Model Benefits
+- **No Coding Required**: Pre-configured solutions ready for deployment
+- **No License Fees**: Open-source foundation with transparent pricing
+- **Infrastructure Only**: Clients pay for actual usage, not software licenses
+- **Automated Management**: Deployment, maintenance, and updates handled automatically
 
-You can automatically install StackExchange Blackbox via the following commands:
+### Technical Partnership
+As Rubrion's technical lead partner, this platform demonstrates:
+- **Automated DevOps**: Complete CI/CD pipeline automation
+- **Scalable Architecture**: Multi-tenant design for efficient resource usage
+- **Open Source Commitment**: Revenue reinvestment into free software development
+- **Hosting Partnerships**: Optimized cloud infrastructure management
 
-```bash
-git clone https://github.com/StackExchange/blackbox.git
-cd blackbox
-sudo make copy-install
-```
+---
 
-This will copy the necessary files into `/usr/local/bin`.
+## License
 
-#### 2. Obtain the Encoded GPG Keys
+This project is licensed under the **GNU General Public License v3.0** (GPL-3.0).
 
-The **public** and **private** Base64-encoded GPG keys are stored in the repository's "Secrets."
-Ask the project maintainer to share the keys with you if you do not have access yet.
+## Support
 
-You will receive:
+- **Documentation**: Complete guides in `/docs` directory
+- **Issues**: GitHub Issues for bug reports and feature requests
+- **Community**: Join our community for discussions and support
+- **Enterprise**: Contact Rubrion for enterprise deployment and customization
 
-- A **Base64-encoded public key**
-- A **Base64-encoded private key**
+[![Donate via PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif 'Donate via PayPal')](https://www.paypal.com/donate/?hosted_button_id=KBPKKS3627FX6)
 
-#### 3. Import the Public Key
+---
 
-Once you receive the **Base64-encoded public key**, use the following command to decode and import it:
+**Built with ❤️ by the Rubrion Team**
 
-```bash
-echo "base64_encoded_public_key" | base64 --decode | gpg --import
-```
-
-- Replace `base64_encoded_public_key` with the actual Base64-encoded string of the public key.
-
-#### 4. Import the Private Key
-
-After importing the public key, you'll also need to import the **private key** for decryption purposes. To do that, use the following command:
-
-```bash
-echo "base64_encoded_private_key" | base64 --decode | gpg --import
-```
-
-- Replace `base64_encoded_private_key` with the actual Base64-encoded string of the private key.
-
-#### 5. Verify the Import
-
-You can verify if both keys were successfully imported with the following command:
-
-```bash
-gpg --list-secret-keys
-```
-
-This will list the GPG keys on your system, and you should see both the public and private key associated with your GPG email.
-
-#### 6. Decrypt Files with `BlackBox`
-
-With both the public and private keys imported, you can now decrypt the files in your project:
-
-```bash
-blackbox_decrypt_all_files
-```
-
-This command will decrypt all files that were encrypted with Blackbox, using your imported GPG keys.
+*Making technology accessible through open-source innovation*

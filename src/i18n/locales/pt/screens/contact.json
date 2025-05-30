@@ -1,0 +1,33 @@
+{
+  "pageTitle": "Entre em Contato",
+  "pageDescription": "Adoraríamos ouvir de você! Preencha o formulário e nossa equipe entrará em contato o mais breve possível.",
+  "contactInfo": {
+    "title": "Informações de Contato",
+    "email": "E-mail: info@start.com",
+    "phone": "Telefone: +1 (555) 123-4567",
+    "address": "Endereço: Rua Negócios 123, Sala 100, Cidade, Estado, CEP"
+  },
+  "businessHours": {
+    "title": "Horário de Atendimento",
+    "weekdays": "Segunda - Sexta: 9:00 AM - 5:00 PM",
+    "weekends": "Sábado - Domingo: Fechado"
+  },
+  "form": {
+    "title": "Envie-nos uma Mensagem",
+    "name": "Nome",
+    "email": "E-mail",
+    "subject": "Assunto",
+    "customSubject": "Assunto Personalizado",
+    "message": "Mensagem",
+    "attachFile": "Anexar Arquivo (máx. 5MB)",
+    "fileSize": "Tamanho do arquivo: {{size}} MB",
+    "fileSizeError": "O tamanho do arquivo excede o limite de 5MB",
+    "submit": "Enviar Mensagem",
+    "success": "Obrigado pela sua mensagem! Entraremos em contato em breve."
+  },
+  "subjects": {
+    "partner": "Tornar-se Parceiro",
+    "services": "Contratar Serviços",
+    "other": "Outro"
+  }
+}

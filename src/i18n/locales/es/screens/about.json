@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "title": "Sobre Nuestra Empresa",
+    "subtitle": "Conozca nuestra misión, valores y el equipo detrás de nuestro éxito.",
+    "overline": "SOBRE NOSOTROS",
+    "buttonText": "Conozca a Nuestro Equipo"
+  },
+  "story": {
+    "title": "Nuestra Historia",
+    "content": [
+      "Fundada en 2020, nuestra empresa ha crecido de una pequeña startup a un líder en la industria. Creemos en la innovación, la calidad y la satisfacción del cliente.",
+      "Nuestro equipo está compuesto por profesionales talentosos que son apasionados por crear productos y servicios excepcionales que marcan la diferencia en la vida de las personas."
+    ]
+  },
+  "values": {
+    "overline": "VALORES",
+    "title": "En Qué Creemos",
+    "subtitle": "Nuestros valores fundamentales guían todo lo que hacemos\ny dan forma a nuestra cultura empresarial.",
+    "items": [
+      {
+        "title": "Innovación",
+        "description": "Empujar constantemente los límites y explorar nuevas ideas."
+      },
+      {
+        "title": "Calidad",
+        "description": "Entregar excelencia en todo lo que creamos."
+      },
+      {
+        "title": "Integridad",
+        "description": "Ser honestos, transparentes y éticos en todas nuestras acciones."
+      },
+      {
+        "title": "Colaboración",
+        "description": "Trabajar juntos para lograr objetivos comunes."
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "overline": "🚨 INSCRIÇÕES ABREM EM 24/05 🚨",
+  "title": "Tech Conference 2025",
+  "subtitle": "Um encontro para discutir o presente e futuro da tecnologia no Brasil. Palestras com especialistas, apresentações de projetos inovadores, networking e debates técnicos. 📍 Centro de Convenções - Auditório Principal - 14/06/2025",
+  "buttonText": "Entrar no Site",
+  "subscribeButtonText": "Inscrever-se no Evento",
+  "location": "Centro de Convenções - Auditório Principal",
+  "date": "14/06/2025",
+  "subscriptionEndDate": "31/05/2025",
+  "subscriptionEndAlert": "⏰ Inscrições encerram em 31/05/2025 - Últimas vagas disponíveis!",
+  "features": [
+    "✨ Palestras com especialistas em tecnologia",
+    "🚀 Apresentações de projetos inovadores",
+    "🌎 Networking",
+    "🧠 Debates estratégicos e técnicos"
+  ],
+  "cta": "Se você quer estar entre aqueles que moldam o futuro da tecnologia no país, este evento é para você. Fique atento para inscrições e seja parte desta transformação! 💡",
+  "sponsors": {
+    "title": "Patrocinadores Oficiais",
+    "subtitle": "Empresas líderes que apoiam a inovação tecnológica no Brasil"
+  }
+}

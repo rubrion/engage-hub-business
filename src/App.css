@@ -1,8 +1,59 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow: auto;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+* {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.disable-transitions * {
+  transition: none !important;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  flex-shrink: 0;
+  visibility: visible !important;
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.app-content-preloading {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.app-content-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in;
 }
 
 .logo {
@@ -30,6 +81,143 @@
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes progress-bar-animation {
+  0% {
+    left: -30%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes progressAnim {
+  0% {
+    left: -30%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes fade-to-content {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-to-content {
+  animation: fade-to-content 0.4s ease-in-out forwards;
+}
+
+@keyframes progress-line {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progress-line {
+  animation: progress-line 1.5s infinite ease-in-out;
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fade-out 0.5s ease-in-out forwards;
+}
+
+.scale-in {
+  animation: scale-in 0.6s ease-in-out forwards;
+}
+
+.slide-up {
+  animation: slide-up 0.6s ease-in-out forwards;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background-color: #74c69d;
+  border-radius: 2px;
+  animation: progress-bar-animation 1s infinite linear;
+}
+
+.bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
@@ -44,12 +232,77 @@
   color: #888;
 }
 
-/* Keep centered content within home-page only */
-.home-page {
-  text-align: center;
+.debug-outline {
+  border: 1px solid red;
 }
 
-/* Add space between content sections */
-section {
-  margin-bottom: 2rem;
+.gradient-text {
+  background: linear-gradient(-45deg, #3b82f6, #6366f1, #2563eb, #4f46e5);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: currentColor;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+.app-container img,
+.app-container svg {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
 }

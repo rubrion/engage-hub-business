@@ -1,0 +1,22 @@
+{
+  "menu": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "blog": "Blog",
+    "projects": "Proyectos",
+    "team": "Equipo",
+    "contact": "Contacto",
+    "partners": "Socios"
+  },
+  "language": {
+    "english": "Inglés",
+    "spanish": "Español",
+    "portuguese": "Portugués",
+    "select": "Seleccionar idioma"
+  },
+  "common": {
+    "toggleTheme": "Alternar modo claro/oscuro",
+    "mobileMenu": "Abrir menú móvil"
+  }
+}

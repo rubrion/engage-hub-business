@@ -1,0 +1,29 @@
+{
+  "hero": {
+    "title": "Our Partners"
+  },
+  "details": {
+    "overline": "PARTNERS",
+    "title": "Meet Our Partners",
+    "buttonText": "Become Partner",
+    "footer": "Join us in building something great together"
+  },
+  "partners": [
+    {
+      "name": "Partner One",
+      "description": "Partner One is a leading company in the tech industry.",
+      "website": "https://www.partnerone.com"
+    },
+    {
+      "name": "Partner Two",
+      "description": "Partner Two specializes in innovative solutions.",
+      "website": "https://www.partnertwo.com"
+    },
+    {
+      "name": "Partner Three",
+      "description": "Partner Three is known for its exceptional services.",
+      "website": "https://www.partnerthree.com"
+    }
+  ],
+  "websiteLabel": "Website:"
+}

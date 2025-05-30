@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Socio Uno",
+    "subtitle": "Socio Tecnológico",
+    "description": "Socio Uno es una empresa líder en la industria tecnológica.",
+    "website": "https://www.partnerone.com",
+    "logo": "/partners/airbnb-logo.svg"
+  },
+  {
+    "id": 2,
+    "name": "Socio Dos",
+    "subtitle": "Socio de Innovación",
+    "description": "Socio Dos se especializa en soluciones innovadoras.",
+    "website": "https://www.partnertwo.com",
+    "logo": "/partners/microsoft-logo.svg"
+  },
+  {
+    "id": 3,
+    "name": "Socio Tres",
+    "subtitle": "Socio de Servicios",
+    "description": "Socio Tres es conocido por sus servicios excepcionales.",
+    "website": "https://www.partnerthree.com",
+    "logo": "/partners/spotify-logo.svg"
+  },
+  {
+    "id": 4,
+    "name": "Socio Cuatro",
+    "subtitle": "Socio Estratégico",
+    "description": "Socio Cuatro ofrece transformación digital integral.",
+    "website": "https://www.partnerfour.com",
+    "logo": "/partners/facebook-logo.svg"
+  },
+  {
+    "id": 5,
+    "name": "Socio Cinco",
+    "subtitle": "Socio de Nube",
+    "description": "Socio Cinco es un líder de la industria en soluciones de nube.",
+    "website": "https://www.partnerfive.com",
+    "logo": "/partners/google-logo.svg"
+  }
+]
