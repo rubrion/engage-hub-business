@@ -62,7 +62,7 @@ const Projects: React.FC = () => {
           ctaText: getProjectContent<string>('content.viewDetails'),
           date: item.date,
           tags: item.meta?.technologies || [],
-          featured: item.featured || false, // Pass the featured flag from mock data
+          featured: item.featured || false,
         };
       });
     };

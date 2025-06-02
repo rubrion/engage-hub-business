@@ -11,9 +11,8 @@ import { debounce } from '../../utils/animationUtils';
 
 interface Logo {
   src: string;
-  alt: string;
-  width: string;
-  height: string;
+  name: string;
+  website?: string;
 }
 
 interface PartnerCarouselProps {
@@ -22,16 +21,16 @@ interface PartnerCarouselProps {
   maxLogoHeight?: number;
   padding?: string;
   align?: 'center' | 'start' | 'end' | 'stretch';
-  logoSize?: number; // New prop for consistent logo size
+  logoSize?: number;
 }
 
 const PartnerCarousel: React.FC<PartnerCarouselProps> = ({
   logos = [],
   speed = 20,
-  maxLogoHeight = 60, // Increased default height
+  maxLogoHeight = 60,
   padding = '0 40px',
   align = 'center',
-  logoSize = 160, // Default fixed size for logos
+  logoSize = 160,
 }) => {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
@@ -49,6 +48,12 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({
   const [, setLoadedImages] = useState(0);
   const isReadyRef = useRef(false);
   const expectedImageCount = useMemo(() => logos.length, [logos.length]);
+
+  const handleLogoClick = useCallback((website?: string) => {
+    if (website) {
+      window.open(website, '_blank', 'noopener,noreferrer');
+    }
+  }, []);
 
   const displayItems = useMemo(() => {
     if (logos.length === 0) return [];
@@ -202,30 +207,8 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({
         width: '100%',
         overflow: 'hidden',
         position: 'relative',
-        backgroundColor: 'transparent', // Remove background from entire carousel
+        backgroundColor: 'transparent',
         py: 2,
-        '&::before, &::after': shouldAnimate
-          ? {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              width: '100px',
-              height: '100%',
-              zIndex: 2,
-            }
-          : {},
-        '&::before': shouldAnimate
-          ? {
-              left: 0,
-              background: `linear-gradient(to right, ${theme.palette.background.paper}, transparent)`,
-            }
-          : {},
-        '&::after': shouldAnimate
-          ? {
-              right: 0,
-              background: `linear-gradient(to left, ${theme.palette.background.paper}, transparent)`,
-            }
-          : {},
       }}
       ref={containerRef}
     >
@@ -260,7 +243,7 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({
                 alignItems: 'center',
                 justifyContent: 'center',
                 width: logoSize,
-                height: maxLogoHeight + 40, // Increased buffer around the logo
+                height: maxLogoHeight + 40,
               }}
             >
               {/* Inner wrapper for hover scaling to avoid affecting the track animation */}
@@ -277,20 +260,33 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({
                   padding: 2,
                   backgroundColor: 'transparent',
                   borderRadius: 1,
+                  cursor: logo.website ? 'pointer' : 'default',
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => handleLogoClick(logo.website)}
+                role={logo.website ? 'button' : undefined}
+                tabIndex={logo.website ? 0 : undefined}
+                onKeyDown={(e) => {
+                  if (logo.website && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    handleLogoClick(logo.website);
+                  }
+                }}
+                aria-label={
+                  logo.website ? `Visit ${logo.name} website` : undefined
+                }
               >
                 <img
                   src={logo.src}
-                  alt={logo.alt}
+                  alt={logo.name}
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   style={{
                     maxHeight: maxLogoHeight,
                     width: 'auto',
                     height: 'auto',
-                    maxWidth: logoSize - 16, // Slightly less restrictive
+                    maxWidth: logoSize - 16,
                     objectFit: 'contain',
                     opacity: hoveredIndex === index ? 1 : 0.6,
                     transition: 'all 0.3s ease, filter 0.3s ease',
@@ -299,7 +295,9 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({
                         ? isDarkMode
                           ? `drop-shadow(0 2px 6px rgba(255,255,255,0.3)) drop-shadow(0 1px 3px rgba(255,255,255,0.25)) drop-shadow(0 0px 2px rgba(255,255,255,0.2)) grayscale(0)`
                           : `drop-shadow(0 2px 6px rgba(0,0,0,0.3)) drop-shadow(0 1px 3px rgba(0,0,0,0.25)) drop-shadow(0 0px 2px rgba(0,0,0,0.2)) grayscale(0)`
-                        : `grayscale(100%) brightness(0.9) drop-shadow(0 1px 2px rgba(0,0,0,0.05))`,
+                        : logo.website
+                          ? `grayscale(80%) brightness(0.95) drop-shadow(0 1px 2px rgba(0,0,0,0.1))`
+                          : `grayscale(100%) brightness(0.9) drop-shadow(0 1px 2px rgba(0,0,0,0.05))`,
                   }}
                 />
               </Box>

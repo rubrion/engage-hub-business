@@ -15,11 +15,12 @@ import {
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 
+import { useEventSponsors } from '../../data/eventSponsorsData';
 import { useLocalizedContent } from '../../hooks/useLocalizedContent';
-import { primaryColors, slateColors } from '../../theme/colors';
 import {
   borderRadius,
   buttonSizes,
+  layout,
   shadows,
   spacing,
   transitions,
@@ -35,6 +36,7 @@ const SeasonalBanner: React.FC = () => {
   const theme = useTheme();
   const { getContent } = useLocalizedContent('screens', 'landingSeasonal');
   const [isVisible, setIsVisible] = useState(true);
+  const eventSponsors = useEventSponsors();
 
   const overline = getContent<string>('overline');
   const title = getContent<string>('title');
@@ -44,46 +46,6 @@ const SeasonalBanner: React.FC = () => {
   const subscriptionEndAlert = getContent<string>('subscriptionEndAlert');
   const sponsorsTitle = getContent<string>('sponsors.title');
 
-  // Event sponsor logos
-  const eventSponsors = [
-    {
-      src: '/event-sponsors/techcorp-logo.svg',
-      alt: 'TechCorp',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/innovatelab-logo.svg',
-      alt: 'InnovateLab',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/devhub-logo.svg',
-      alt: 'DevHub',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/cloudtech-logo.svg',
-      alt: 'CloudTech',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/datasystems-logo.svg',
-      alt: 'DataSystems',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/nextgen-logo.svg',
-      alt: 'NextGen',
-      width: '120px',
-      height: 'auto',
-    },
-  ];
-
   const handleSubscribe = () => {
     const subscriptionUrl = `${import.meta.env.VITE_LANDING_CAMPAIGN_BASE_URL}`;
     window.open(subscriptionUrl, '_blank');
@@ -92,14 +54,6 @@ const SeasonalBanner: React.FC = () => {
   const handleDismiss = () => {
     setIsVisible(false);
   };
-
-  const textColor = theme.palette.mode === 'dark' ? slateColors[50] : '#ffffff';
-  const secondaryTextColor =
-    theme.palette.mode === 'dark' ? slateColors[300] : slateColors[100];
-  const buttonBgColor =
-    theme.palette.mode === 'dark' ? primaryColors.blue.main : '#ffffff';
-  const buttonTextColor =
-    theme.palette.mode === 'dark' ? '#ffffff' : primaryColors.blue.dark;
 
   return (
     <AnimatePresence mode="wait">
@@ -117,7 +71,6 @@ const SeasonalBanner: React.FC = () => {
           }}
           style={{ position: 'relative' }}
         >
-          {/* Close button - positioned outside banner at top-right corner */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -134,8 +87,8 @@ const SeasonalBanner: React.FC = () => {
               sx={{
                 color:
                   theme.palette.mode === 'dark'
-                    ? slateColors[300]
-                    : slateColors[600],
+                    ? theme.palette.text.secondary
+                    : theme.palette.text.primary,
                 backgroundColor:
                   theme.palette.mode === 'dark'
                     ? 'rgba(255, 255, 255, 0.1)'
@@ -158,8 +111,8 @@ const SeasonalBanner: React.FC = () => {
                       : 'rgba(255, 255, 255, 1)',
                   color:
                     theme.palette.mode === 'dark'
-                      ? slateColors[100]
-                      : slateColors[700],
+                      ? theme.palette.text.primary
+                      : theme.palette.text.secondary,
                   transform: 'scale(1.1)',
                   boxShadow:
                     theme.palette.mode === 'dark'
@@ -179,8 +132,8 @@ const SeasonalBanner: React.FC = () => {
             sx={{
               backgroundColor:
                 theme.palette.mode === 'dark'
-                  ? slateColors[800]
-                  : primaryColors.blue.main,
+                  ? theme.palette.background.paper
+                  : theme.palette.primary.main,
               backgroundImage:
                 'linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 100%)',
               borderRadius: borderRadius.lg,
@@ -188,7 +141,7 @@ const SeasonalBanner: React.FC = () => {
               position: 'relative',
               border:
                 theme.palette.mode === 'dark'
-                  ? `1px solid ${slateColors[700]}`
+                  ? `1px solid ${theme.palette.grey[700]}`
                   : 'none',
               '&::before': {
                 content: '""',
@@ -212,6 +165,7 @@ const SeasonalBanner: React.FC = () => {
                 position: 'relative',
                 zIndex: 2,
                 py: { xs: spacing.sm, md: spacing.md },
+                pb: { xs: spacing.xs, md: spacing.sm },
               }}
             >
               <Box
@@ -224,13 +178,12 @@ const SeasonalBanner: React.FC = () => {
                   textAlign: { xs: 'center', md: 'left' },
                 }}
               >
-                {/* Content Section */}
                 <Box sx={{ flex: 1, maxWidth: { md: '70%' } }}>
                   <Typography
                     variant="overline"
                     component="p"
                     sx={{
-                      color: secondaryTextColor,
+                      color: theme.palette.text.secondary,
                       mb: '4px',
                       fontSize: '0.9rem',
                       fontWeight: 'bold',
@@ -244,7 +197,7 @@ const SeasonalBanner: React.FC = () => {
                     variant="h3"
                     component="h2"
                     sx={{
-                      color: textColor,
+                      color: theme.palette.common.white,
                       fontWeight: 700,
                       mb: spacing.xs,
                       fontSize: { xs: '1.8rem', md: '2.2rem' },
@@ -254,7 +207,6 @@ const SeasonalBanner: React.FC = () => {
                     {title}
                   </Typography>
 
-                  {/* Event details */}
                   <Stack
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={2}
@@ -264,7 +216,7 @@ const SeasonalBanner: React.FC = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <CalendarTodayIcon
                         sx={{
-                          color: secondaryTextColor,
+                          color: theme.palette.text.secondary,
                           mr: 1,
                           fontSize: '1.1rem',
                         }}
@@ -272,7 +224,10 @@ const SeasonalBanner: React.FC = () => {
                       <Typography
                         variant="body1"
                         component="span"
-                        sx={{ color: secondaryTextColor, fontWeight: 500 }}
+                        sx={{
+                          color: theme.palette.text.secondary,
+                          fontWeight: 500,
+                        }}
                       >
                         {date}
                       </Typography>
@@ -280,7 +235,7 @@ const SeasonalBanner: React.FC = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <LocationOnIcon
                         sx={{
-                          color: secondaryTextColor,
+                          color: theme.palette.text.secondary,
                           mr: 1,
                           fontSize: '1.1rem',
                         }}
@@ -288,7 +243,10 @@ const SeasonalBanner: React.FC = () => {
                       <Typography
                         variant="body1"
                         component="span"
-                        sx={{ color: secondaryTextColor, fontWeight: 500 }}
+                        sx={{
+                          color: theme.palette.text.secondary,
+                          fontWeight: 500,
+                        }}
                       >
                         {location}
                       </Typography>
@@ -296,7 +254,6 @@ const SeasonalBanner: React.FC = () => {
                   </Stack>
                 </Box>
 
-                {/* CTA Section */}
                 <Box
                   sx={{
                     display: 'flex',
@@ -311,8 +268,14 @@ const SeasonalBanner: React.FC = () => {
                     size="large"
                     onClick={handleSubscribe}
                     sx={{
-                      backgroundColor: buttonBgColor,
-                      color: buttonTextColor,
+                      backgroundColor:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primary.main
+                          : theme.palette.common.white,
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.common.white
+                          : theme.palette.primary.dark,
                       px: spacing.xl,
                       py: buttonSizes.large.padding,
                       fontSize: buttonSizes.medium.fontSize,
@@ -324,8 +287,8 @@ const SeasonalBanner: React.FC = () => {
                       '&:hover': {
                         backgroundColor:
                           theme.palette.mode === 'dark'
-                            ? primaryColors.blue.light
-                            : slateColors[50],
+                            ? theme.palette.primary.light
+                            : theme.palette.grey[50],
                         transform: 'translateY(-2px)',
                         boxShadow: shadows.cardHover,
                       },
@@ -339,7 +302,6 @@ const SeasonalBanner: React.FC = () => {
                 </Box>
               </Box>
 
-              {/* Subscription End Date Alert - Full width below main content */}
               {subscriptionEndAlert && (
                 <Alert
                   severity="warning"
@@ -347,7 +309,7 @@ const SeasonalBanner: React.FC = () => {
                     mt: spacing.sm,
                     mb: spacing.xs,
                     backgroundColor: 'rgba(255, 152, 0, 0.15)',
-                    color: textColor,
+                    color: theme.palette.common.white,
                     border: '1px solid rgba(255, 152, 0, 0.3)',
                     borderRadius: borderRadius.sm,
                     '& .MuiAlert-icon': {
@@ -367,16 +329,15 @@ const SeasonalBanner: React.FC = () => {
                 </Alert>
               )}
 
-              {/* Mini Sponsors Section - Bottom placement */}
               {sponsorsTitle && eventSponsors.length > 0 && (
-                <Box sx={{ mt: spacing.xs, mx: -spacing.md }}>
+                <Box sx={{ mt: spacing.xs, mx: -spacing.md, mb: -spacing.xs }}>
                   <Typography
                     variant="caption"
                     sx={{
-                      color: secondaryTextColor,
+                      color: theme.palette.text.secondary,
                       fontSize: '0.75rem',
                       fontWeight: 500,
-                      mb: '4px',
+                      mb: '2px',
                       display: 'block',
                       textAlign: 'left',
                       ml: spacing.md,
@@ -387,8 +348,8 @@ const SeasonalBanner: React.FC = () => {
                   <PartnerCarousel
                     logos={eventSponsors}
                     speed={12}
-                    maxLogoHeight={48}
-                    logoSize={120}
+                    maxLogoHeight={layout.logo.maxHeight.banner}
+                    logoSize={layout.logo.defaultSize}
                     align="center"
                     padding="0"
                   />

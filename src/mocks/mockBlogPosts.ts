@@ -61,7 +61,7 @@ const baseBlogPostsData: BaseBlogPostData[] = [
       es: ['React', 'Desarrollo Web', 'Frontend'],
       pt: ['React', 'Desenvolvimento Web', 'Frontend'],
     },
-    featured: true,
+
     imageSeeds: ['dev1', 'development', 'code'],
   },
   {
@@ -77,7 +77,7 @@ const baseBlogPostsData: BaseBlogPostData[] = [
       es: ['IA', 'Aprendizaje Automático', 'Tecnología'],
       pt: ['IA', 'Aprendizado de Máquina', 'Tecnologia'],
     },
-    featured: true,
+
     imageSeeds: ['ai1', 'artificial-intelligence', 'robot'],
   },
   {
@@ -176,7 +176,7 @@ const baseBlogPostsData: BaseBlogPostData[] = [
       es: ['Desarrollo Móvil', 'React Native', 'Multiplataforma'],
       pt: ['Desenvolvimento Mobile', 'React Native', 'Multiplataforma'],
     },
-    featured: true,
+
     imageSeeds: ['mobile1', 'smartphone', 'app'],
   },
   {
@@ -291,7 +291,7 @@ const baseBlogPostsData: BaseBlogPostData[] = [
         'Otimização de Conversão',
       ],
     },
-    featured: true,
+
     imageSeeds: ['webanalytics1', 'user', 'behavior'],
   },
   {
@@ -368,7 +368,7 @@ const baseBlogPostsData: BaseBlogPostData[] = [
       es: ['Marketing Digital', 'SEO', 'Estrategia de Contenido'],
       pt: ['Marketing Digital', 'SEO', 'Estratégia de Conteúdo'],
     },
-    featured: true,
+
     imageSeeds: ['marketing1', 'digital', 'seo'],
   },
 ];
@@ -805,7 +805,7 @@ function generateBlogPostsForLanguage(
       category: categoryTranslated,
       iconType: basePost.iconType,
       language: language,
-      featured: basePost.featured || false,
+      featured: basePost.featured,
       meta: {
         description: translation[language].description,
         author: basePost.author[language],

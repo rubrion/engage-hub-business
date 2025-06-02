@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "TechCorp",
+    "src": "/event-sponsors/techcorp-logo.svg",
+    "website": "https://www.techcorp.com"
+  },
+  {
+    "id": 2,
+    "name": "InnovateLab",
+    "src": "/event-sponsors/innovatelab-logo.svg",
+    "website": "https://www.innovatelab.com"
+  },
+  {
+    "id": 3,
+    "name": "DevHub",
+    "src": "/event-sponsors/devhub-logo.svg",
+    "website": "https://www.devhub.com"
+  },
+  {
+    "id": 4,
+    "name": "CloudTech",
+    "src": "/event-sponsors/cloudtech-logo.svg",
+    "website": "https://www.cloudtech.com"
+  },
+  {
+    "id": 5,
+    "name": "DataSystems",
+    "src": "/event-sponsors/datasystems-logo.svg",
+    "website": "https://www.datasystems.com"
+  },
+  {
+    "id": 6,
+    "name": "NextGen",
+    "src": "/event-sponsors/nextgen-logo.svg",
+    "website": "https://www.nextgen.com"
+  }
+]

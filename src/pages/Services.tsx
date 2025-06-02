@@ -56,7 +56,7 @@ const Services: React.FC = () => {
         title={serviceData.hero.title}
         maxWidth="lg"
       >
-        <Grid container spacing={4}>
+        <Grid container spacing={4} justifyContent="center">
           {Array.isArray(serviceData.services) &&
             serviceData.services.map((service: ServiceItemType) => (
               <Grid

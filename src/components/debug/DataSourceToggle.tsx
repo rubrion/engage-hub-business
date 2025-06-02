@@ -12,6 +12,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getDataSourceMode } from '../../config';
 import { useTenant } from '../../hooks/useTenantContext';
+import { getMockWorker } from '../../mocks/workerUtils';
 import { semanticColors } from '../../theme/colors';
 import { layout } from '../../theme/themeUtils';
 import { debugLog, isDebugEnabled } from '../../utils/debugControl';
@@ -35,7 +36,7 @@ const DataSourceToggle: React.FC = () => {
     message: string;
   } | null>(null);
 
-  const handleDataSourceChange = (
+  const handleDataSourceChange = async (
     _: React.MouseEvent<HTMLElement>,
     newValue: 'mock' | 'api'
   ) => {
@@ -52,24 +53,30 @@ const DataSourceToggle: React.FC = () => {
       debugLog('Switching to Mock data source');
 
       if (window.__IS_MSW_ACTIVE__ !== true) {
-        worker
-          .start({
-            onUnhandledRequest: 'bypass',
-            serviceWorker: {
-              url: '/mockServiceWorker.js',
-              options: { scope: '/' },
-            },
-          })
-          .then(() => {
+        try {
+          const worker = await getMockWorker();
+          if (worker) {
+            await worker.start({
+              onUnhandledRequest: 'bypass',
+              serviceWorker: {
+                url: '/mockServiceWorker.js',
+                options: { scope: '/' },
+              },
+            });
             window.__IS_MSW_ACTIVE__ = true;
             window.location.reload();
-          })
-          .catch((error) => {
+          } else {
             setStatusMessage({
               type: 'error',
-              message: `Failed to start MSW: ${error instanceof Error ? error.message : String(error)}`,
+              message: 'Failed to get MSW worker',
             });
+          }
+        } catch (error: unknown) {
+          setStatusMessage({
+            type: 'error',
+            message: `Failed to start MSW: ${error instanceof Error ? error.message : String(error)}`,
           });
+        }
       } else {
         window.location.reload();
       }
@@ -80,9 +87,17 @@ const DataSourceToggle: React.FC = () => {
       debugLog('Switching to API data source');
 
       if (window.__IS_MSW_ACTIVE__ === true) {
-        worker.stop();
-        window.__IS_MSW_ACTIVE__ = false;
-        window.location.reload();
+        try {
+          const worker = await getMockWorker();
+          if (worker) {
+            worker.stop();
+          }
+          window.__IS_MSW_ACTIVE__ = false;
+          window.location.reload();
+        } catch (error: unknown) {
+          debugLog('Error stopping MSW worker:', error);
+          window.location.reload();
+        }
       } else {
         window.location.reload();
       }
