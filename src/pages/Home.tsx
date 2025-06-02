@@ -16,6 +16,7 @@ import { useTranslationContext } from '../hooks/useTranslationContext';
 import BaseLayout from '../layouts/BaseLayout';
 import ROUTES from '../routes';
 import { getImporterForPath } from '../routes/importRegistry';
+import { layout } from '../theme/themeUtils';
 import { shouldShowLogoAnimation } from '../utils/logoAnimationState';
 import { prefetch } from '../utils/prefetchRoute';
 import { shouldShowLanding } from '../utils/shouldShowLanding';
@@ -51,9 +52,8 @@ const Home: React.FC = () => {
       src:
         partner.logo ||
         `/${partner.name.toLowerCase().replace(/\s+/g, '-')}-logo.svg`,
-      alt: partner.name,
-      width: '120px',
-      height: 'auto',
+      name: partner.name,
+      website: partner.website,
     }));
   }, [partners]);
 
@@ -231,9 +231,9 @@ const Home: React.FC = () => {
           <PartnerCarousel
             logos={partnerLogos}
             speed={15}
-            maxLogoHeight={60}
+            maxLogoHeight={layout.logo.maxHeight.carousel}
             padding="0 5px"
-            logoSize={160}
+            logoSize={layout.logo.partnerSize}
           />
         </CTASection>
 

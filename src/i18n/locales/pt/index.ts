@@ -1,4 +1,5 @@
 import common from './common.json';
+import eventSponsorsData from './data/eventSponsorsData.json';
 import partnersData from './data/partnersData.json';
 import teamData from './data/teamData.json';
 import navigation from './navigation.json';
@@ -35,6 +36,7 @@ const screens = {
 const data = {
   partnersData,
   teamData,
+  eventSponsorsData,
 };
 
 export default {

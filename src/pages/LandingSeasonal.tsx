@@ -15,11 +15,12 @@ import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import PartnerCarousel from '../components/ui/PartnerCarousel';
+import { useEventSponsors } from '../data/eventSponsorsData';
 import { useLocalizedContent } from '../hooks/useLocalizedContent';
-import { primaryColors, slateColors } from '../theme/colors';
 import {
   borderRadius,
   buttonSizes,
+  layout,
   shadows,
   spacing,
   transitions,
@@ -34,6 +35,7 @@ const LandingSeasonal: React.FC = () => {
   const navigate = useNavigate();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { getContent } = useLocalizedContent('screens', 'landingSeasonal');
+  const eventSponsors = useEventSponsors();
   const overline = getContent<string>('overline');
   const title = getContent<string>('title');
   const subtitle = getContent<string>('subtitle');
@@ -46,46 +48,6 @@ const LandingSeasonal: React.FC = () => {
   const cta = getContent<string>('cta');
   const sponsorsTitle = getContent<string>('sponsors.title');
   const sponsorsSubtitle = getContent<string>('sponsors.subtitle');
-
-  // Event sponsor logos
-  const eventSponsors = [
-    {
-      src: '/event-sponsors/techcorp-logo.svg',
-      alt: 'TechCorp',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/innovatelab-logo.svg',
-      alt: 'InnovateLab',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/devhub-logo.svg',
-      alt: 'DevHub',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/cloudtech-logo.svg',
-      alt: 'CloudTech',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/datasystems-logo.svg',
-      alt: 'DataSystems',
-      width: '120px',
-      height: 'auto',
-    },
-    {
-      src: '/event-sponsors/nextgen-logo.svg',
-      alt: 'NextGen',
-      width: '120px',
-      height: 'auto',
-    },
-  ];
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -102,18 +64,6 @@ const LandingSeasonal: React.FC = () => {
     window.open(subscriptionUrl, '_blank');
   };
 
-  const textColor = theme.palette.mode === 'dark' ? slateColors[50] : '#ffffff';
-  const secondaryTextColor =
-    theme.palette.mode === 'dark' ? slateColors[300] : slateColors[50];
-  const buttonBgColor =
-    theme.palette.mode === 'dark' ? primaryColors.blue.main : '#ffffff';
-  const buttonTextColor =
-    theme.palette.mode === 'dark' ? '#ffffff' : primaryColors.blue.dark;
-  const outlineBtnColor =
-    theme.palette.mode === 'dark' ? primaryColors.blue.light : '#ffffff';
-  const outlineBtnBorder =
-    theme.palette.mode === 'dark' ? primaryColors.blue.main : '#ffffff';
-
   return (
     <Box
       role="banner"
@@ -126,8 +76,8 @@ const LandingSeasonal: React.FC = () => {
         alignItems: 'center',
         backgroundColor:
           theme.palette.mode === 'dark'
-            ? slateColors[900]
-            : primaryColors.blue.lighter,
+            ? theme.palette.background.default
+            : theme.palette.primary.main,
         backgroundImage: 'url("/home/start-hero.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -161,7 +111,7 @@ const LandingSeasonal: React.FC = () => {
             variant="overline"
             component="p"
             sx={{
-              color: secondaryTextColor,
+              color: theme.palette.text.primary,
               mb: '4px',
               fontSize: '0.9rem',
               fontWeight: 'bold',
@@ -173,7 +123,7 @@ const LandingSeasonal: React.FC = () => {
             variant="h1"
             component="h1"
             sx={{
-              color: textColor,
+              color: theme.palette.common.white,
               fontWeight: 700,
               mb: spacing.xs,
               fontSize: { xs: '2rem', md: '2.8rem' },
@@ -183,7 +133,6 @@ const LandingSeasonal: React.FC = () => {
             {title}
           </Typography>
 
-          {/* Event details with icons */}
           <Stack
             direction="row"
             spacing={2}
@@ -192,24 +141,32 @@ const LandingSeasonal: React.FC = () => {
           >
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <CalendarTodayIcon
-                sx={{ color: textColor, mr: 1, fontSize: '1.2rem' }}
+                sx={{
+                  color: theme.palette.common.white,
+                  mr: 1,
+                  fontSize: '1.2rem',
+                }}
               />
               <Typography
                 variant="body1"
                 component="span"
-                sx={{ color: textColor, fontSize: '1rem' }}
+                sx={{ color: theme.palette.common.white, fontSize: '1rem' }}
               >
                 {date}
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <LocationOnIcon
-                sx={{ color: textColor, mr: 1, fontSize: '1.2rem' }}
+                sx={{
+                  color: theme.palette.common.white,
+                  mr: 1,
+                  fontSize: '1.2rem',
+                }}
               />
               <Typography
                 variant="body1"
                 component="span"
-                sx={{ color: textColor, fontSize: '1rem' }}
+                sx={{ color: theme.palette.common.white, fontSize: '1rem' }}
               >
                 {location}
               </Typography>
@@ -220,7 +177,7 @@ const LandingSeasonal: React.FC = () => {
             variant="body1"
             component="p"
             sx={{
-              color: secondaryTextColor,
+              color: theme.palette.text.secondary,
               mb: spacing.sm,
               maxWidth: '700px',
               mx: 'auto',
@@ -230,14 +187,13 @@ const LandingSeasonal: React.FC = () => {
             {subtitle}
           </Typography>
         </Box>{' '}
-        {/* Subscription End Date Alert */}
         {subscriptionEndAlert && (
           <Alert
             severity="warning"
             sx={{
               mb: spacing.sm,
               backgroundColor: 'rgba(255, 152, 0, 0.1)',
-              color: textColor,
+              color: theme.palette.common.white,
               border: '1px solid rgba(255, 152, 0, 0.3)',
               '& .MuiAlert-icon': {
                 color: '#ff9800',
@@ -253,7 +209,6 @@ const LandingSeasonal: React.FC = () => {
             </Typography>
           </Alert>
         )}
-        {/* Features section */}
         <Grid container spacing={1.5} sx={{ mb: spacing.sm }}>
           {features.map((feature, index) => (
             <Grid size={{ xs: 12, sm: 6 }} key={index}>
@@ -262,7 +217,7 @@ const LandingSeasonal: React.FC = () => {
                 sx={{
                   p: 1.5,
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  color: textColor,
+                  color: theme.palette.common.white,
                   borderRadius: borderRadius.md,
                   height: '100%',
                   display: 'flex',
@@ -280,11 +235,10 @@ const LandingSeasonal: React.FC = () => {
             </Grid>
           ))}
         </Grid>
-        {/* CTA text */}
         <Typography
           variant="body2"
           sx={{
-            color: textColor,
+            color: theme.palette.common.white,
             fontWeight: 500,
             mb: spacing.sm,
             fontSize: '1rem',
@@ -308,8 +262,14 @@ const LandingSeasonal: React.FC = () => {
             size="large"
             onClick={handleEnterSite}
             sx={{
-              backgroundColor: buttonBgColor,
-              color: buttonTextColor,
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary.main
+                  : theme.palette.common.white,
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.common.white
+                  : theme.palette.primary.dark,
               px: spacing.lg,
               py: buttonSizes.large.padding,
               fontSize: buttonSizes.large.fontSize,
@@ -321,8 +281,8 @@ const LandingSeasonal: React.FC = () => {
               '&:hover': {
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? primaryColors.blue.light
-                    : slateColors[50],
+                    ? theme.palette.primary.light
+                    : theme.palette.grey[50],
                 boxShadow: shadows.button,
               },
             }}
@@ -334,8 +294,11 @@ const LandingSeasonal: React.FC = () => {
             size="large"
             onClick={handleSubscribe}
             sx={{
-              borderColor: outlineBtnBorder,
-              color: outlineBtnColor,
+              borderColor: theme.palette.common.white,
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary.light
+                  : theme.palette.common.white,
               px: spacing.lg,
               py: buttonSizes.large.padding,
               fontSize: buttonSizes.medium.fontSize,
@@ -347,22 +310,21 @@ const LandingSeasonal: React.FC = () => {
                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 borderColor:
                   theme.palette.mode === 'dark'
-                    ? primaryColors.blue.light
-                    : '#ffffff',
+                    ? theme.palette.primary.light
+                    : theme.palette.common.white,
               },
             }}
           >
             {subscribeButtonText}
           </Button>
         </Box>
-        {/* Sponsors Section */}
         {sponsorsTitle && (
           <Box sx={{ mt: spacing.sm }}>
             <Typography
               variant="h6"
               component="h2"
               sx={{
-                color: textColor,
+                color: theme.palette.common.white,
                 fontWeight: 600,
                 mb: '4px',
                 textAlign: 'center',
@@ -376,7 +338,7 @@ const LandingSeasonal: React.FC = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: secondaryTextColor,
+                  color: theme.palette.text.secondary,
                   mb: spacing.xs,
                   textAlign: 'center',
                   maxWidth: '500px',
@@ -391,8 +353,8 @@ const LandingSeasonal: React.FC = () => {
             <PartnerCarousel
               logos={eventSponsors}
               speed={15}
-              maxLogoHeight={50}
-              logoSize={140}
+              maxLogoHeight={layout.logo.maxHeight.carousel}
+              logoSize={layout.logo.partnerSize}
               align="center"
             />
           </Box>

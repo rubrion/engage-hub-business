@@ -76,7 +76,7 @@ const baseProjectsData: BaseProjectData[] = [
     technologies: ['React', 'TypeScript', 'Node.js', 'AWS Lambda'],
     github: 'https://github.com/example/energy-project',
     website: 'https://energy-project.example.com',
-    featured: true,
+
     references: {
       en: [
         {
@@ -146,7 +146,7 @@ const baseProjectsData: BaseProjectData[] = [
     date: '2024-02-20',
     technologies: ['Vue.js', 'Python', 'TensorFlow', 'Google Cloud'],
     github: 'https://github.com/example/healthcare-project',
-    featured: true,
+
     meta: {
       technologies: ['Vue.js', 'Python', 'TensorFlow', 'Google Cloud'],
       team: [
@@ -253,7 +253,7 @@ const baseProjectsData: BaseProjectData[] = [
     date: '2023-06-18',
     technologies: ['Python', 'Blockchain', 'Ethereum', 'Web3.js'],
     github: 'https://github.com/example/security-project',
-    featured: true,
+
     meta: {
       technologies: ['Python', 'Blockchain', 'Ethereum', 'Web3.js'],
     },
@@ -298,7 +298,7 @@ const baseProjectsData: BaseProjectData[] = [
     date: '2023-02-28',
     technologies: ['React Native', 'Node.js', 'MongoDB', 'Stripe API'],
     github: 'https://github.com/example/tourism-project',
-    featured: true,
+
     meta: {
       technologies: ['React Native', 'Node.js', 'MongoDB', 'Stripe API'],
     },
@@ -332,7 +332,7 @@ const baseProjectsData: BaseProjectData[] = [
     date: '2022-11-10',
     technologies: ['Python', 'Machine Learning', 'Satellite API', 'PostgreSQL'],
     website: 'https://environment-monitor.example.com',
-    featured: true,
+
     meta: {
       technologies: [
         'Python',

@@ -106,6 +106,14 @@ export const layout = {
   },
   logoWidth: 160,
   minContentHeight: 100,
+  logo: {
+    defaultSize: 120,
+    partnerSize: 160,
+    maxHeight: {
+      banner: 48,
+      carousel: 60,
+    },
+  },
   offset: {
     small: 20,
     medium: 50,
