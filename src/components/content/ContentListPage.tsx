@@ -68,6 +68,7 @@ function ContentListPage<T extends CommonContent>({
   const { scrollToElement } = useScrollTo();
   const { language } = useLanguage();
   const [page, setPage] = useState(currentPage);
+  const [isNavigating, setIsNavigating] = useState(false);
   const namespace = resource;
   const { getContent } = useLocalizedContent('screens', namespace);
   const {
@@ -114,9 +115,17 @@ function ContentListPage<T extends CommonContent>({
     value: number
   ) => {
     setPage(value);
+    setIsNavigating(true);
 
     if (linkToPage) {
       navigate(linkToPage(value));
+      setTimeout(() => {
+        scrollToElement(contentSectionId, {
+          behavior: 'smooth',
+          offset: 80,
+        });
+        setIsNavigating(false);
+      }, 250);
     }
   };
 
@@ -269,7 +278,14 @@ function ContentListPage<T extends CommonContent>({
           <LoadingIndicator message={translations.loading.updating} />
         ) : (
           <>
-            <Grid container spacing={4}>
+            <Grid
+              container
+              spacing={4}
+              sx={{
+                transition: 'opacity 0.3s ease-in-out',
+                opacity: isNavigating ? 0.8 : 1,
+              }}
+            >
               {finalMapToContentItems(contentData.items).map(
                 (contentItem, index) => {
                   const isFeatured = contentItem.featured && index === 0;
@@ -306,6 +322,16 @@ function ContentListPage<T extends CommonContent>({
                   onChange={handleChangePage}
                   color="primary"
                   size="large"
+                  disabled={isNavigating}
+                  sx={{
+                    '& .MuiPaginationItem-root': {
+                      transition: 'all 0.2s ease-in-out',
+                    },
+                    ...(isNavigating && {
+                      opacity: 0.7,
+                      pointerEvents: 'none',
+                    }),
+                  }}
                 />
               </Box>
             )}

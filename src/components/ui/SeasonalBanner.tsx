@@ -183,7 +183,10 @@ const SeasonalBanner: React.FC = () => {
                     variant="overline"
                     component="p"
                     sx={{
-                      color: theme.palette.text.secondary,
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.text.secondary
+                          : theme.palette.primary.contrastText,
                       mb: '4px',
                       fontSize: '0.9rem',
                       fontWeight: 'bold',
@@ -216,7 +219,10 @@ const SeasonalBanner: React.FC = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <CalendarTodayIcon
                         sx={{
-                          color: theme.palette.text.secondary,
+                          color:
+                            theme.palette.mode === 'dark'
+                              ? theme.palette.text.secondary
+                              : theme.palette.primary.contrastText,
                           mr: 1,
                           fontSize: '1.1rem',
                         }}
@@ -225,7 +231,10 @@ const SeasonalBanner: React.FC = () => {
                         variant="body1"
                         component="span"
                         sx={{
-                          color: theme.palette.text.secondary,
+                          color:
+                            theme.palette.mode === 'dark'
+                              ? theme.palette.text.secondary
+                              : theme.palette.primary.contrastText,
                           fontWeight: 500,
                         }}
                       >
@@ -235,7 +244,10 @@ const SeasonalBanner: React.FC = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <LocationOnIcon
                         sx={{
-                          color: theme.palette.text.secondary,
+                          color:
+                            theme.palette.mode === 'dark'
+                              ? theme.palette.text.secondary
+                              : theme.palette.primary.contrastText,
                           mr: 1,
                           fontSize: '1.1rem',
                         }}
@@ -244,7 +256,10 @@ const SeasonalBanner: React.FC = () => {
                         variant="body1"
                         component="span"
                         sx={{
-                          color: theme.palette.text.secondary,
+                          color:
+                            theme.palette.mode === 'dark'
+                              ? theme.palette.text.secondary
+                              : theme.palette.primary.contrastText,
                           fontWeight: 500,
                         }}
                       >
@@ -334,7 +349,10 @@ const SeasonalBanner: React.FC = () => {
                   <Typography
                     variant="caption"
                     sx={{
-                      color: theme.palette.text.secondary,
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.text.secondary
+                          : theme.palette.primary.contrastText,
                       fontSize: '0.75rem',
                       fontWeight: 500,
                       mb: '2px',

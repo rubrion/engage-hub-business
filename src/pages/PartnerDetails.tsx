@@ -58,7 +58,7 @@ const PartnerDetails: React.FC = () => {
               key={partner.id || partner.name}
             >
               <EntityCard
-                avatar={partner.logo || ''}
+                avatar={partner.src || ''}
                 name={partner.name}
                 subtitle={partner.subtitle}
                 description={partner.description}

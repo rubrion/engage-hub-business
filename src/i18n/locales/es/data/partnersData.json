@@ -1,42 +1,37 @@
 [
   {
     "id": 1,
-    "name": "Socio Uno",
-    "subtitle": "Socio Tecnológico",
-    "description": "Socio Uno es una empresa líder en la industria tecnológica.",
-    "website": "https://www.partnerone.com",
-    "logo": "/partners/airbnb-logo.svg"
+    "name": "TechCorp",
+    "description": "El Socio Uno es una empresa líder en la industria tecnológica.",
+    "src": "/event-sponsors/techcorp-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 2,
-    "name": "Socio Dos",
-    "subtitle": "Socio de Innovación",
-    "description": "Socio Dos se especializa en soluciones innovadoras.",
-    "website": "https://www.partnertwo.com",
-    "logo": "/partners/microsoft-logo.svg"
+    "name": "InnovateLab",
+    "description": "El Socio Dos se especializa en soluciones innovadoras.",
+    "src": "/event-sponsors/innovatelab-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 3,
-    "name": "Socio Tres",
-    "subtitle": "Socio de Servicios",
-    "description": "Socio Tres es conocido por sus servicios excepcionales.",
-    "website": "https://www.partnerthree.com",
-    "logo": "/partners/spotify-logo.svg"
+    "name": "DevHub",
+    "description": "El Socio Tres es conocido por sus servicios excepcionales.",
+    "src": "/event-sponsors/devhub-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 4,
-    "name": "Socio Cuatro",
-    "subtitle": "Socio Estratégico",
-    "description": "Socio Cuatro ofrece transformación digital integral.",
-    "website": "https://www.partnerfour.com",
-    "logo": "/partners/facebook-logo.svg"
+    "name": "CloudTech",
+    "description": "El Socio Cuatro ofrece una transformación digital integral.",
+    "src": "/event-sponsors/cloudtech-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 5,
-    "name": "Socio Cinco",
-    "subtitle": "Socio de Nube",
-    "description": "Socio Cinco es un líder de la industria en soluciones de nube.",
-    "website": "https://www.partnerfive.com",
-    "logo": "/partners/google-logo.svg"
+    "name": "DataSystems",
+    "description": "El Socio Cinco es un líder en soluciones en la nube.",
+    "src": "/event-sponsors/datasystems-logo.svg",
+    "website": "about:blank"
   }
 ]

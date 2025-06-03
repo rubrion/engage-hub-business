@@ -25,11 +25,15 @@ export const useScrollTo = () => {
           const offsetPosition = elementPosition + window.pageYOffset - offset;
 
           window.scrollTo({
-            top: offsetPosition,
+            top: Math.max(0, offsetPosition), // Prevent negative scroll positions
             behavior: behavior as ScrollBehavior,
           });
+        } else {
+          console.warn(
+            `Element with ID "${elementId}" not found for scrolling`
+          );
         }
-      }, 100);
+      }, 50);
     },
     []
   );

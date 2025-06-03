@@ -17,9 +17,9 @@ interface TeamSliderProps {
 
 const ArrowLeft = styled(motion.div)<{ show: boolean }>(({ theme, show }) => ({
   position: 'absolute',
-  top: cardLayout.slider.arrowTop,
+  top: '145px', // Fixed position at middle of compact card (290px/2 = 145px)
   left: theme.spacing(cardLayout.slider.arrowSide),
-  transform: cardLayout.slider.arrowTransform,
+  transform: 'translateY(-50%)',
   cursor: 'pointer',
   opacity: show ? 1 : 0,
   transition: 'opacity 0.5s ease-in-out, visibility 0.5s ease-in-out',
@@ -48,9 +48,9 @@ const ArrowLeft = styled(motion.div)<{ show: boolean }>(({ theme, show }) => ({
 
 const ArrowRight = styled(motion.div)<{ show: boolean }>(({ theme, show }) => ({
   position: 'absolute',
-  top: cardLayout.slider.arrowTop,
+  top: '145px', // Fixed position at middle of compact card (290px/2 = 145px)
   right: theme.spacing(cardLayout.slider.arrowSide),
-  transform: cardLayout.slider.arrowTransform,
+  transform: 'translateY(-50%)',
   cursor: 'pointer',
   opacity: show ? 1 : 0,
   transition: 'opacity 0.5s ease-in-out, visibility 0.5s ease-in-out',

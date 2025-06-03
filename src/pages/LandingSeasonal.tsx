@@ -20,6 +20,7 @@ import { useLocalizedContent } from '../hooks/useLocalizedContent';
 import {
   borderRadius,
   buttonSizes,
+  getThemeBackgroundVariations,
   layout,
   shadows,
   spacing,
@@ -35,6 +36,9 @@ const LandingSeasonal: React.FC = () => {
   const navigate = useNavigate();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { getContent } = useLocalizedContent('screens', 'landingSeasonal');
+
+  const backgroundVariations = getThemeBackgroundVariations(theme);
+  const { background, overlay } = backgroundVariations.soft;
   const eventSponsors = useEventSponsors();
   const overline = getContent<string>('overline');
   const title = getContent<string>('title');
@@ -74,10 +78,7 @@ const LandingSeasonal: React.FC = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:
-          theme.palette.mode === 'dark'
-            ? theme.palette.background.default
-            : theme.palette.primary.main,
+        backgroundColor: background,
         backgroundImage: 'url("/home/start-hero.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -89,10 +90,7 @@ const LandingSeasonal: React.FC = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor:
-            theme.palette.mode === 'dark'
-              ? 'rgba(15, 23, 42, 0.9)'
-              : 'rgba(37, 99, 235, 0.85)',
+          backgroundColor: overlay,
           zIndex: 1,
         },
       }}
@@ -111,7 +109,10 @@ const LandingSeasonal: React.FC = () => {
             variant="overline"
             component="p"
             sx={{
-              color: theme.palette.text.primary,
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.text.primary
+                  : theme.palette.primary.contrastText,
               mb: '4px',
               fontSize: '0.9rem',
               fontWeight: 'bold',
@@ -177,7 +178,10 @@ const LandingSeasonal: React.FC = () => {
             variant="body1"
             component="p"
             sx={{
-              color: theme.palette.text.secondary,
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.text.secondary
+                  : theme.palette.primary.contrastText,
               mb: spacing.sm,
               maxWidth: '700px',
               mx: 'auto',
@@ -338,7 +342,10 @@ const LandingSeasonal: React.FC = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: theme.palette.text.secondary,
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.text.secondary
+                      : theme.palette.primary.contrastText,
                   mb: spacing.xs,
                   textAlign: 'center',
                   maxWidth: '500px',
