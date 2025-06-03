@@ -7,5 +7,5 @@ export interface Partner {
   subtitle?: string;
   description: string;
   website: string;
-  logo: string;
+  src: string;
 }

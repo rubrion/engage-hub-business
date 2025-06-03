@@ -26,10 +26,12 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
 
   useEffect(() => {
     if (shouldScrollToTop(location.pathname)) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+      if (window.scrollY > 100) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
     }
   }, [location.pathname]);
 

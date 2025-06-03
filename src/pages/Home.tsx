@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -46,16 +46,6 @@ const Home: React.FC = () => {
   const handleAnimationComplete = () => {
     setShowLogoAnimation(false);
   };
-
-  const partnerLogos = useMemo(() => {
-    return partners.map((partner) => ({
-      src:
-        partner.logo ||
-        `/${partner.name.toLowerCase().replace(/\s+/g, '-')}-logo.svg`,
-      name: partner.name,
-      website: partner.website,
-    }));
-  }, [partners]);
 
   const hero = {
     title: getContent<string>('hero.title'),
@@ -229,7 +219,7 @@ const Home: React.FC = () => {
           }}
         >
           <PartnerCarousel
-            logos={partnerLogos}
+            logos={partners}
             speed={15}
             maxLogoHeight={layout.logo.maxHeight.carousel}
             padding="0 5px"

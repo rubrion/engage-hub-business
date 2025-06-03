@@ -1,42 +1,37 @@
 [
   {
     "id": 1,
-    "name": "Parceiro Um",
-    "subtitle": "Parceiro Tecnológico",
-    "description": "Parceiro Um é uma empresa líder na indústria de tecnologia.",
-    "website": "https://www.partnerone.com",
-    "logo": "/partners/airbnb-logo.svg"
+    "name": "TechCorp",
+    "description": "O Parceiro Um é uma empresa líder no setor de tecnologia.",
+    "src": "/event-sponsors/techcorp-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 2,
-    "name": "Parceiro Dois",
-    "subtitle": "Parceiro de Inovação",
-    "description": "Parceiro Dois se especializa em soluções inovadoras.",
-    "website": "https://www.partnertwo.com",
-    "logo": "/partners/microsoft-logo.svg"
+    "name": "InnovateLab",
+    "description": "O Parceiro Dois é especializado em soluções inovadoras.",
+    "src": "/event-sponsors/innovatelab-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 3,
-    "name": "Parceiro Três",
-    "subtitle": "Parceiro de Serviços",
-    "description": "Parceiro Três é conhecido por seus serviços excepcionais.",
-    "website": "https://www.partnerthree.com",
-    "logo": "/partners/spotify-logo.svg"
+    "name": "DevHub",
+    "description": "O Parceiro Três é conhecido por seus serviços excepcionais.",
+    "src": "/event-sponsors/devhub-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 4,
-    "name": "Parceiro Quatro",
-    "subtitle": "Parceiro Estratégico",
-    "description": "Parceiro Quatro oferece transformação digital abrangente.",
-    "website": "https://www.partnerfour.com",
-    "logo": "/partners/facebook-logo.svg"
+    "name": "CloudTech",
+    "description": "O Parceiro Quatro oferece transformação digital abrangente.",
+    "src": "/event-sponsors/cloudtech-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 5,
-    "name": "Parceiro Cinco",
-    "subtitle": "Parceiro de Nuvem",
-    "description": "Parceiro Cinco é líder do setor em soluções de nuvem.",
-    "website": "https://www.partnerfive.com",
-    "logo": "/partners/google-logo.svg"
+    "name": "DataSystems",
+    "description": "O Parceiro Cinco é um líder em soluções na nuvem.",
+    "src": "/event-sponsors/datasystems-logo.svg",
+    "website": "about:blank"
   }
 ]

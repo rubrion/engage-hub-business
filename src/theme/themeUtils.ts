@@ -373,3 +373,84 @@ function getColorConstant(path: string): string | undefined {
 
   return undefined;
 }
+
+export const getFilteredBackground = (theme: Theme) => {
+  return {
+    primary: {
+      light:
+        theme.palette.mode === 'dark'
+          ? theme.palette.background.default
+          : theme.palette.primary.light,
+      overlay:
+        theme.palette.mode === 'dark'
+          ? overlayColors.dark.heavy
+          : `rgba(30, 64, 175, 0.8)`,
+    },
+    primaryFiltered: {
+      background:
+        theme.palette.mode === 'dark'
+          ? theme.palette.background.default
+          : theme.palette.primary.light,
+      overlay:
+        theme.palette.mode === 'dark'
+          ? overlayColors.dark.heavy
+          : overlayColors.light.medium,
+    },
+  };
+};
+
+// Utility to get theme-aware overlay colors based on primary color
+export const getPrimaryOverlay = (theme: Theme, opacity: number = 0.8) => {
+  if (theme.palette.mode === 'dark') {
+    return `rgba(15, 23, 42, ${opacity})`;
+  }
+
+  // Extract RGB values from primary.main color
+  const primaryColor = theme.palette.primary.main;
+  if (primaryColor.startsWith('#')) {
+    const hex = primaryColor.slice(1);
+    const r = parseInt(hex.slice(0, 2), 16);
+    const g = parseInt(hex.slice(2, 4), 16);
+    const b = parseInt(hex.slice(4, 6), 16);
+
+    // Create a darker variant for better contrast
+    const darkerR = Math.max(0, r - 50);
+    const darkerG = Math.max(0, g - 50);
+    const darkerB = Math.max(0, b - 50);
+
+    return `rgba(${darkerR}, ${darkerG}, ${darkerB}, ${opacity})`;
+  }
+
+  return `rgba(30, 64, 175, ${opacity})`;
+};
+
+export const getThemeBackgroundVariations = (theme: Theme) => {
+  const isDark = theme.palette.mode === 'dark';
+
+  return {
+    subtle: {
+      background: isDark
+        ? theme.palette.background.default
+        : theme.palette.primary.light,
+      overlay: isDark ? overlayColors.dark.heavy : overlayColors.light.medium,
+    },
+    // More prominent background using primary color
+    prominent: {
+      background: isDark
+        ? theme.palette.background.paper
+        : theme.palette.primary.main,
+      overlay: isDark
+        ? overlayColors.dark.medium
+        : getPrimaryOverlay(theme, 0.85),
+    },
+    // Softer background for better readability
+    soft: {
+      background: isDark
+        ? theme.palette.background.default
+        : theme.palette.primary.light,
+      overlay: isDark
+        ? overlayColors.dark.heavy
+        : getPrimaryOverlay(theme, 0.75),
+    },
+  };
+};
