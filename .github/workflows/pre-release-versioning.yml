@@ -34,14 +34,21 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npm install --save-dev @release-it/keep-a-changelog auto-changelog
 
       - name: Get Pre-Release Version
         id: get-release-tag
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          LATEST_COMMIT_TYPE=$(git log -1 --pretty=%B | grep -oP '^(docs|style|test|build|ci|chore)(?:\(.*\))?:' | head -1 || echo "")
+          # Get the latest commit message (excluding any previous release commits)
+          LATEST_COMMIT=$(git log -1 --pretty=%B --grep="chore(release):" --invert-grep)
+          echo "Latest commit message: $LATEST_COMMIT"
+          
+          # Check if it's a commit type that should be skipped
+          LATEST_COMMIT_TYPE=$(echo "$LATEST_COMMIT" | grep -oP '^(docs|style|test|build|ci|chore)(?:\(.*\))?:' | head -1 || echo "")
 
           if [[ -n "$LATEST_COMMIT_TYPE" ]]; then
             echo "Latest commit is of type: $LATEST_COMMIT_TYPE, which doesn't require version bump."
@@ -49,10 +56,50 @@ jobs:
             exit 0
           fi
 
-          # Only proceed for feat, fix, refactor, perf types or if breaking change
-          RELEASE_TAG=$(npx release-it --ci --dry-run --preRelease=beta --git.requireBranch=develop | grep -oP 'Release \K[0-9]+\.[0-9]+\.[0-9]+(-beta\.[0-9]+)?' | head -n 1 | tr -d '\n' || echo "")
+          # Check if this commit should trigger a version bump
+          COMMIT_TYPE=$(echo "$LATEST_COMMIT" | grep -oP '^(feat|fix|refactor|perf)(?:\(.*\))?:' | head -1 || echo "")
+          BREAKING_CHANGE=$(echo "$LATEST_COMMIT" | grep -i "BREAKING CHANGE" || echo "")
+          
+          if [[ -z "$COMMIT_TYPE" && -z "$BREAKING_CHANGE" ]]; then
+            echo "No version bump trigger found in latest commit."
+            echo "No new release detected."
+            exit 0
+          fi
 
+          echo "Commit triggers version bump. Running release-it to get version..."
+          
+          # Run release-it in dry-run mode to get the next version
+          RELEASE_OUTPUT=$(npx release-it --ci --dry-run --preRelease=beta --git.requireBranch=develop 2>&1)
+          echo "Release-it dry-run output:"
+          echo "$RELEASE_OUTPUT"
+          
+          # Extract version from the release-it output using multiple patterns
+          # Pattern 1: From "🚀 Let's release rubrion-frontend-template (1.0.0...1.1.0-beta.0)"
+          RELEASE_TAG=$(echo "$RELEASE_OUTPUT" | grep -oP '🚀 Let.s release.*\([^)]*\.\.\.[^)]*\)' | grep -oP '[0-9]+\.[0-9]+\.[0-9]+(-beta\.[0-9]+)?(?=\))' | tail -1 || echo "")
+          
+          # Pattern 2: From lines containing version numbers after "release"
           if [ -z "$RELEASE_TAG" ]; then
+            RELEASE_TAG=$(echo "$RELEASE_OUTPUT" | grep -i "release" | grep -oP '[0-9]+\.[0-9]+\.[0-9]+(-beta\.[0-9]+)?' | head -1 || echo "")
+          fi
+          
+          # Pattern 3: From any line containing a semantic version with beta
+          if [ -z "$RELEASE_TAG" ]; then
+            RELEASE_TAG=$(echo "$RELEASE_OUTPUT" | grep -oP '[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+' | head -1 || echo "")
+          fi
+          
+          # Pattern 4: From any line containing a semantic version
+          if [ -z "$RELEASE_TAG" ]; then
+            RELEASE_TAG=$(echo "$RELEASE_OUTPUT" | grep -oP '[0-9]+\.[0-9]+\.[0-9]+' | head -1 || echo "")
+            if [ -n "$RELEASE_TAG" ]; then
+              # Add beta suffix if not present
+              RELEASE_TAG="${RELEASE_TAG}-beta.0"
+            fi
+          fi
+          
+          if [ -z "$RELEASE_TAG" ]; then
+            echo "Could not extract version from release-it output."
+            echo "Full output for debugging:"
+            echo "$RELEASE_OUTPUT"
             echo "No new release detected."
             exit 0
           fi

@@ -43,12 +43,30 @@ export const getScrollTargetFromURL = (search: string): string | null => {
 export const SCROLL_TO_TOP_PAGES: string[] = ['*'];
 
 /**
+ * Paths that should NOT scroll to top automatically (takes precedence over SCROLL_TO_TOP_PAGES)
+ * Used for pagination navigation where we want to scroll to content section instead
+ */
+export const NO_SCROLL_TO_TOP_PATTERNS: string[] = [
+  '/blog/page/',
+  '/projects/page/',
+];
+
+/**
  * Checks if a page should automatically scroll to top when navigated to
  *
  * @param pathname Current route path
  * @returns boolean indicating if should scroll to top
  */
 export const shouldScrollToTop = (pathname: string): boolean => {
+  // Check if this path should be excluded from scroll-to-top behavior
+  const shouldExclude = NO_SCROLL_TO_TOP_PATTERNS.some((pattern) =>
+    pathname.includes(pattern)
+  );
+
+  if (shouldExclude) {
+    return false;
+  }
+
   if (SCROLL_TO_TOP_PAGES.includes('*')) {
     return true;
   }

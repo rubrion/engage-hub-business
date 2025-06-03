@@ -1,42 +1,37 @@
 [
   {
     "id": 1,
-    "name": "Partner One",
-    "subtitle": "Technology Partner",
+    "name": "TechCorp",
     "description": "Partner One is a leading company in the tech industry.",
-    "website": "https://www.partnerone.com",
-    "logo": "/partners/airbnb-logo.svg"
+    "src": "/event-sponsors/techcorp-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 2,
-    "name": "Partner Two",
-    "subtitle": "Innovation Partner",
+    "name": "InnovateLab",
     "description": "Partner Two specializes in innovative solutions.",
-    "website": "https://www.partnertwo.com",
-    "logo": "/partners/microsoft-logo.svg"
+    "src": "/event-sponsors/innovatelab-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 3,
-    "name": "Partner Three",
-    "subtitle": "Service Partner",
+    "name": "DevHub",
     "description": "Partner Three is known for its exceptional services.",
-    "website": "https://www.partnerthree.com",
-    "logo": "/partners/spotify-logo.svg"
+    "src": "/event-sponsors/devhub-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 4,
-    "name": "Partner Four",
-    "subtitle": "Strategic Partner",
+    "name": "CloudTech",
     "description": "Partner Four offers comprehensive digital transformation.",
-    "website": "https://www.partnerfour.com",
-    "logo": "/partners/facebook-logo.svg"
+    "src": "/event-sponsors/cloudtech-logo.svg",
+    "website": "about:blank"
   },
   {
     "id": 5,
-    "name": "Partner Five",
-    "subtitle": "Cloud Partner",
+    "name": "DataSystems",
     "description": "Partner Five is an industry leader in cloud solutions.",
-    "website": "https://www.partnerfive.com",
-    "logo": "/partners/google-logo.svg"
+    "src": "/event-sponsors/datasystems-logo.svg",
+    "website": "about:blank"
   }
 ]
